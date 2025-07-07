@@ -6,6 +6,7 @@ import { CardTitleText } from './CardTitleText'
 import { CardDateText } from './CardDateText'
 import { useShapeGeometryWithUV } from './useShapeGeometryWithUV'
 import { useExtrudeGeometryWithUV } from './useExtrudeGeometryWithUV'
+import { createRoundedRectShape } from './createRoundedRectShape'
 
 const GameSlide = () => {
 
@@ -13,24 +14,6 @@ const GameSlide = () => {
     const gameImage = useLoader(THREE.TextureLoader, '/StudioImages/BlindSqurrelGames/GameImage.png')
     const gameTitle = "MASS EFFECT: LEGENDARY EDITION"
     const dateText = "13 May 2025"
-
-    const createRoundedRectShape = useMemo(() => {
-        return (width, height, radius) => {
-            const shape = new THREE.Shape()
-
-            shape.moveTo(-width / 2 + radius, -height / 2)
-            shape.lineTo(width / 2 - radius, -height / 2)
-            shape.quadraticCurveTo(width / 2, -height / 2, width / 2, -height / 2 + radius)
-            shape.lineTo(width / 2, height / 2 - radius)
-            shape.quadraticCurveTo(width / 2, height / 2, width / 2 - radius, height / 2)
-            shape.lineTo(-width / 2 + radius, height / 2)
-            shape.quadraticCurveTo(-width / 2, height / 2, -width / 2, height / 2 - radius)
-            shape.lineTo(-width / 2, -height / 2 + radius)
-            shape.quadraticCurveTo(-width / 2, -height / 2, -width / 2 + radius, -height / 2)
-
-            return shape
-        }
-    }, [])
 
     const backgroundShape = useMemo(() => createRoundedRectShape(4, 3.4, 0.2), [createRoundedRectShape])
     const backgroundShapeWithUV = useExtrudeGeometryWithUV(backgroundShape, { depth: 0.05, bevelEnabled: false })

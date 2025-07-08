@@ -7,7 +7,7 @@ import { useLoader } from '@react-three/fiber'
 
 export function CardBoard() {
 
-    const backgroundShape = useMemo(() => createRoundedRectShape(4, 3.4, 0.2), [createRoundedRectShape])
+    const backgroundShape = useMemo(() => createRoundedRectShape(4, 3.4, 0.05), [createRoundedRectShape])
     const backgroundShapeWithUV = useExtrudeGeometryWithUV(backgroundShape, { depth: 0.05, bevelEnabled: false })
 
     const cardFolderName = "/CardTextures";

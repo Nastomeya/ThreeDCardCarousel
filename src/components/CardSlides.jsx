@@ -1,5 +1,6 @@
 import Card from './Card'
 import { useTexture } from "@react-three/drei";
+import { useState } from 'react'
 
 const cards = [
     {
@@ -46,23 +47,50 @@ const cards = [
     },
 ]
 
+function getWrappedOffset(idx, centerIdx, total) {
+    let offset = idx - centerIdx
+    if (offset > total / 2) offset -= total
+    if (offset < -total / 2) offset += total
+    return offset
+}
 
 const CardSlides = () => {
     const studioLogos = useTexture(cards.map(c => c.studioLogo))
     const gameImages = useTexture(cards.map(c => c.gameImage))
-    const radius = 3.5 // try 6-8 for nice curve
-    const angleStep = 0.28 // radians, ~16°
-    const centerIdx = Math.floor(cards.length / 2)
-    const maxZOffset = 3  // tweak for how much the outer cards recede
-    const zStep = maxZOffset / centerIdx * 0.5// so outermost card is at -maxZOffset
+
+    const radius = 12
+    const angleStep = 0.1 // radians, ~16°//0.13
+    const maxAngle = 0.4
+    const maxZOffset = 1  // How much the outer cards recede
+
+    const [centerIdx, setCenterIdx] = useState(Math.floor(cards.length / 2))
+
     return (
         <>
+            {/* <mesh position={[0, 0, 0]}>
+                <sphereGeometry args={[0.1]} />
+                <meshBasicMaterial color="red" />
+            </mesh> */}
             {cards.map((card, idx) => {
-                const offset = idx - centerIdx
+                const offset = getWrappedOffset(idx, centerIdx, cards.length)
+
                 const theta = offset * angleStep
-                const x = Math.sin(theta) * radius
-                const z = -Math.abs(offset) * zStep//Math.cos(theta) * radius - radius
-                const rotationY = -theta
+
+                const baseX = Math.sin(theta) * radius
+                const spreadMultiplier = 1 + (Math.abs(offset) * 0.1) // Adjust 0.2 to control spread
+                const x = baseX * spreadMultiplier
+                //const x = Math.sin(theta) * radius
+
+                // Fixed z-position calculation for symmetric behavior
+                const z = Math.cos(theta) * radius - radius - Math.abs(offset) * maxZOffset
+
+                // More gradual increase toward center
+                const rotationMultiplier = (2 / (Math.abs(offset) - 1))
+                const rotationY = Math.max(-maxAngle, Math.min(maxAngle, -theta * rotationMultiplier))
+                // const rotationY = Math.max(-maxAngle, Math.min(maxAngle, -theta))
+
+                const scale = offset === 0 ? 1.08 : 1
+
                 return (
                     <Card
                         key={idx}
@@ -72,13 +100,13 @@ const CardSlides = () => {
                         dateText={card.dateText}
                         position={[x, 0, z]}
                         rotation={[0, rotationY, 0]}
-                        onClick={() => {
-                            console.log("Clicked card:", card)
-                        }}
+                        scale={scale}
+                        onClick={() => setCenterIdx(idx)}
                     />
                 )
             })}
         </>
     )
 }
+
 export default CardSlides

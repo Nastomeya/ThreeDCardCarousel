@@ -17,7 +17,7 @@ export function CardBoard() {
     const metalnessMap = useLoader(THREE.TextureLoader, cardFolderName + '/BrushedIron1K_Metallic.png')
 
     return (
-        <mesh position={[0, 0, 0]} geometry={backgroundShapeWithUV} >
+        <mesh position={[0, 0, 0]} geometry={backgroundShapeWithUV} receiveShadow={true} castShadow={true} frustumCulled={false}>
             <meshPhysicalMaterial
                 map={metalBaseMap}
                 normalMap={metalNormalMap}

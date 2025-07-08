@@ -3,7 +3,7 @@ import { useShapeGeometryWithUV } from './useShapeGeometryWithUV'
 import { useMemo } from 'react'
 import * as THREE from 'three'
 
-export function CircleWithOutline({ radius, map, outter, position = [0, 0, 0], strokeColor = 'black', segments = 64 }) {
+export function CircleWithOutline({ radius, texture, outter, position = [0, 0, 0], strokeColor = 'black', segments = 64 }) {
 
     const imgShape = useMemo(() => createCircleShape(radius), [])
     const imgShapeWithUV = useShapeGeometryWithUV(imgShape)
@@ -11,11 +11,11 @@ export function CircleWithOutline({ radius, map, outter, position = [0, 0, 0], s
         () => new THREE.RingGeometry(radius, outter, segments),
         [radius, outter, segments]
     )
-
+    texture.colorSpace = THREE.SRGBColorSpace
     return (
         <group>
-            <mesh position={position} geometry={imgShapeWithUV}>
-                <meshLambertMaterial map={map} />
+            <mesh position={position} geometry={imgShapeWithUV} receiveShadow={true} castShadow={true} frustumCulled={false}>
+                <meshLambertMaterial map={texture} />
             </mesh>
 
             {/* Stroke */}

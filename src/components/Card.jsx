@@ -1,12 +1,10 @@
-import React, { useMemo } from 'react'
-import { GradientTexture } from '@react-three/drei'
 import { useLoader } from '@react-three/fiber'
 import * as THREE from 'three'
 import { CardTitleText } from './CardTitleText'
 import { CardDateText } from './CardDateText'
-import { useShapeGeometryWithUV } from './useShapeGeometryWithUV'
-import { useExtrudeGeometryWithUV } from './useExtrudeGeometryWithUV'
-import { createRoundedRectShape } from './createRoundedRectShape'
+import { CircleWithOutline } from './CircleWithOutline'
+import { CardBoard } from './CardBoard'
+import { SubCardImage } from './SubCardImage'
 
 const GameSlide = () => {
 
@@ -15,54 +13,15 @@ const GameSlide = () => {
     const gameTitle = "MASS EFFECT: LEGENDARY EDITION"
     const dateText = "13 May 2025"
 
-    const backgroundShape = useMemo(() => createRoundedRectShape(4, 3.4, 0.2), [createRoundedRectShape])
-    const backgroundShapeWithUV = useExtrudeGeometryWithUV(backgroundShape, { depth: 0.05, bevelEnabled: false })
-    const cardFolderName = "/CardTextures";
-    const metalNormalMap = useLoader(THREE.TextureLoader, cardFolderName + '/BrushedIron1K_Normal.png')
-    const metalBaseMap = useLoader(THREE.TextureLoader, cardFolderName + '/BrushedIron1K_BaseColor.png')
-    const metalRoughnessMap = useLoader(THREE.TextureLoader, cardFolderName + '/BrushedIron1K_Roughness.png')
-    const metalnessMap = useLoader(THREE.TextureLoader, cardFolderName + '/BrushedIron1K_Metallic.png')
-
-    const gameImgShape = useMemo(() => createRoundedRectShape(2.8, 2, 0.1), [createRoundedRectShape])
-    const gameImgShapeWithUV = useShapeGeometryWithUV(gameImgShape)
-
-    const logoImgShape = useMemo(() => createRoundedRectShape(2.8, 2, 0.1), [createRoundedRectShape])
-    const logoImgShapeWithUV = useShapeGeometryWithUV(logoImgShape)
-
+    const logoRadius = 0.35
     const distanceFromCard = 0.055;
     return (
         <group position={[0, 0, 0]}>
-            <mesh position={[0, 0, 0]} geometry={backgroundShapeWithUV} >
-                <meshPhysicalMaterial
-                    map={metalBaseMap}
-                    normalMap={metalNormalMap}
-                    normalScale={[0, 0.2]}
-                    roughnessMap={metalRoughnessMap}    // Variation in shininess
-                    roughness={1}
-                    metalnessMap={metalnessMap}    // Where to be metal
-                    metalness={0.5}
-                    clearcoat={0.3}        // Adds clear coat layer
-                    clearcoatRoughness={0.1}
-                    reflectivity={0.5}     // High reflectivity
-                >
-                    <GradientTexture colors={['white', '#2a3a65', '#9ca4b2']} stops={[0, 0.65, 1]} />
-                </meshPhysicalMaterial>
-            </mesh>
-
-            <CardTitleText position={[-1.4, 1.45, distanceFromCard]}>
-                {gameTitle}
-            </CardTitleText>
-            <CardDateText position={[1.4, 0.8, distanceFromCard]}>
-                {dateText}
-            </CardDateText>
-
-            {/* <mesh position={[0, 0.25, distanceFromCard]} geometry={logoImgShapeWithUV}>
-                <meshLambertMaterial map={studioLogo} />
-            </mesh> */}
-
-            <mesh position={[0, -0.4, distanceFromCard]} geometry={gameImgShapeWithUV}>
-                <meshLambertMaterial map={gameImage} />
-            </mesh>
+            <CardBoard />
+            <CardTitleText position={[-1.4, 1.45, distanceFromCard]}>{gameTitle}</CardTitleText>
+            <CardDateText position={[1.4, 0.8, distanceFromCard]}>{dateText}</CardDateText>
+            <CircleWithOutline radius={logoRadius} map={studioLogo} outter={logoRadius + 0.02} position={[1, 1.2, distanceFromCard]} />
+            <SubCardImage position={[0, -0.4, distanceFromCard]} map={gameImage} width={2.8} height={2} radius={0.1} />
         </group>
     )
 }

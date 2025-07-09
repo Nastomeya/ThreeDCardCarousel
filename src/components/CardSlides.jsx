@@ -4,12 +4,7 @@ import { useState } from 'react'
 import { useSpring, animated } from '@react-spring/three'
 
 const cards = [
-    {
-        studioLogo: '/StudioImages/BlindSqurrelGames/Logo.png',
-        gameImage: '/StudioImages/BlindSqurrelGames/GameImage.png',
-        gameTitle: "MASS EFFECT: LEGENDARY EDITION",
-        dateText: "13 May 2025"
-    },
+
     {
         studioLogo: '/StudioImages/BlindSqurrelGames/Logo.png',
         gameImage: '/StudioImages/BlindSqurrelGames/GameImage.png',
@@ -27,6 +22,12 @@ const cards = [
         gameImage: '/StudioImages/BlindSqurrelGames/GameImage.png',
         gameTitle: "War 2",
         dateText: "06 Oct 2013"
+    },
+    {
+        studioLogo: '/StudioImages/BlindSqurrelGames/Logo.png',
+        gameImage: '/StudioImages/BlindSqurrelGames/GameImage.png',
+        gameTitle: "MASS EFFECT: LEGENDARY EDITION",
+        dateText: "13 May 2025"
     },
     {
         studioLogo: '/StudioImages/BlindSqurrelGames/Logo.png',
@@ -65,7 +66,6 @@ const CardSlides = () => {
     const maxZOffset = 1  // How much the outer cards recede
 
     const [targetIdx, setCenterIdx] = useState(Math.floor(cards.length / 2))
-
     // Function to find the shortest path between current and target
     const getShortestPath = (current, target, total) => {
         const direct = target - current
@@ -81,23 +81,7 @@ const CardSlides = () => {
             return current + wrapBackward
         }
     }
-    // const getShortestPath = (current, target, total) => {
-    //     // Find the equivalent target position closest to current
-    //     const currentMod = ((current % total) + total) % total
-    //     const targetMod = ((target % total) + total) % total
 
-    //     // Calculate possible targets
-    //     const targets = [
-    //         current + (targetMod - currentMod),
-    //         current + (targetMod - currentMod + total),
-    //         current + (targetMod - currentMod - total)
-    //     ]
-
-    //     // Return the target with minimum distance
-    //     return targets.reduce((closest, t) =>
-    //         Math.abs(t - current) < Math.abs(closest - current) ? t : closest
-    //     )
-    // }
 
     // Spring animation for the center index
     const { centerIdx } = useSpring({
@@ -145,13 +129,12 @@ const CardSlides = () => {
                             gameTitle={card.gameTitle}
                             dateText={card.dateText}
                             onClick={() => {
-                                // setCenterIdx(idx)
-                                // const currentCenter = Math.round(centerIdx.get())
-                                // const normalizedCurrent = ((currentCenter % cards.length) + cards.length) % cards.length
-                                // const shortestTarget = getShortestPath(normalizedCurrent, idx, cards.length)
+                                console.log('Card clicked:', idx, 'Current center:', targetIdx)
                                 const currentCenter = centerIdx.get()
                                 const shortestTarget = getShortestPath(currentCenter, idx, cards.length)
+                                console.log('Moving to:', shortestTarget)
                                 setCenterIdx(shortestTarget)
+
                             }}
                         />
                     </animated.group>

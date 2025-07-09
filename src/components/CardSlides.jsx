@@ -8,19 +8,19 @@ const cards = [
     {
         studioLogo: '/StudioImages/BlindSqurrelGames/Logo.png',
         gameImage: '/StudioImages/BlindSqurrelGames/GameImage.png',
-        gameTitle: "LAST TIDE",
+        gameTitle: "Number 01",
         dateText: "06 Oct 2016"
     },
     {
         studioLogo: '/StudioImages/BlindSqurrelGames/Logo.png',
         gameImage: '/StudioImages/BlindSqurrelGames/GameImage.png',
-        gameTitle: "LAST TIDE XX",
+        gameTitle: "Number 02",
         dateText: "06 Oct 2013"
     },
     {
         studioLogo: '/StudioImages/BlindSqurrelGames/Logo.png',
         gameImage: '/StudioImages/BlindSqurrelGames/GameImage.png',
-        gameTitle: "War 2",
+        gameTitle: "Number 03",
         dateText: "06 Oct 2013"
     },
     {
@@ -32,19 +32,19 @@ const cards = [
     {
         studioLogo: '/StudioImages/BlindSqurrelGames/Logo.png',
         gameImage: '/StudioImages/BlindSqurrelGames/GameImage.png',
-        gameTitle: "War 1",
+        gameTitle: "Number 05",
         dateText: "06 Oct 2013"
     },
     {
         studioLogo: '/StudioImages/BlindSqurrelGames/Logo.png',
         gameImage: '/StudioImages/BlindSqurrelGames/GameImage.png',
-        gameTitle: "War 3",
+        gameTitle: "Number 06",
         dateText: "06 Oct 2013"
     },
     {
         studioLogo: '/StudioImages/BlindSqurrelGames/Logo.png',
         gameImage: '/StudioImages/BlindSqurrelGames/GameImage.png',
-        gameTitle: "War 4",
+        gameTitle: "Number 07",
         dateText: "06 Oct 2013"
     },
 ]
@@ -92,7 +92,7 @@ const CardSlides = () => {
             precision: 0.001
         }
     })
-
+    const wrap = i => ((i % cards.length) + cards.length) % cards.length
     return (
         <>
             {cards.map((card, idx) => {
@@ -105,7 +105,6 @@ const CardSlides = () => {
                             const positionSpread = 1 + (Math.abs(offset) * 0.1)
                             const baseX = Math.sin(theta) * radius
                             const x = baseX * positionSpread
-                            // const x = Math.sin(theta * positionSpread) * radius
                             const z = Math.cos(theta) * radius - radius - Math.abs(offset) * maxZOffset
                             return [x, 0, z]
                         })}
@@ -130,7 +129,8 @@ const CardSlides = () => {
                             dateText={card.dateText}
                             onClick={() => {
                                 console.log('Card clicked:', idx, 'Current center:', targetIdx)
-                                const currentCenter = centerIdx.get()
+                                const currentCenter = wrap(centerIdx.get());
+                                // const shortestTarget = Math.abs(getShortestPath(currentCenter, idx, cards.length)) % cards.length
                                 const shortestTarget = getShortestPath(currentCenter, idx, cards.length)
                                 console.log('Moving to:', shortestTarget)
                                 setCenterIdx(shortestTarget)

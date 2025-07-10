@@ -23,7 +23,7 @@ export function CardBoard({ isShowTime }) {
                 normalMap={metalNormalMap}
                 normalScale={[0, 0.2]}
                 roughnessMap={metalRoughnessMap}    // Variation in shininess
-                roughness={1}
+                roughness={isShowTime ? 1 : 0.15}
                 metalnessMap={metalnessMap}    // Where to be metal
                 metalness={0.5}
                 clearcoat={0.3}        // Adds clear coat layer
@@ -31,7 +31,7 @@ export function CardBoard({ isShowTime }) {
                 reflectivity={0.5}     // High reflectivity
             >
                 <GradientTexture
-                    colors={isShowTime ? ['white', '#3f4b6d', '#2a3a65', '#9ca4b2'] : ['#2a3a65', '#606672', '#606672', '#2a3a65']}
+                    colors={isShowTime ? ['white', '#3f4b6d', '#2a3a65', '#9ca4b2'] : ['#3f4b6d', '#606672', '#606672', '#3f4b6d']}
                     stops={isShowTime ? [0, 0.45, 0.65, 1] : [0, 0.25, 0.65, 1]}
                     rotation={isShowTime ? (0) : (Math.PI / 2)}
                     center={[0.5, 0.5]}

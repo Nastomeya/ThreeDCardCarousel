@@ -16,17 +16,18 @@ import { Text } from '@react-three/drei'
  * @param {string} [props.textAlign="left"] - Line alignment ("left", "center", "right", "justify")
  */
 export function CardTitleText({
-    children,
+    displayCode,
     font = "/Fonts/BebasNeue-Regular.ttf",
-    fontSize = 0.3,
-    color = "#11234A",
+    color = (displayCode === 1 ? "#11234A" : "#9ca4b2"),
+    maxWidth = (displayCode === 1 ? 2 : 3.2),
+    anchorX = (displayCode === 1 ? "left" : "center"),
+    textAlign = (displayCode === 1 ? "left" : "center"),
+    fontSize = (displayCode === 1 ? 0.3 : 0.25),
+
     position = [0, 0, 0],
     rotation = [0, 0, 0],
     lineHeight = 1.215,
-    maxWidth = 2,
-    anchorX = "left",
     anchorY = "top",
-    textAlign = "left",
     ...rest
 }) {
     return (
@@ -42,8 +43,6 @@ export function CardTitleText({
             anchorY={anchorY}
             textAlign={textAlign}
             {...rest}
-        >
-            {children}
-        </Text>
+        />
     )
 }

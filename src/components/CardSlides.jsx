@@ -149,7 +149,7 @@ const CardSlides = () => {
                                 setCenterIdx(shortestIndex)
                                 // console.log("normalizedCenter:  " + normalizedCenter + "   clickedIdx: " + clickedIdx)
                             }}
-                            isShowTimeCode={
+                            displayCode={
                                 (index === normalizedCenter) ? 1 ://1 is center card to show up
                                     (mod((serialisedCenterIndex - normalizedCenter + index), totalCount) > serialisedCenterIndex) ? 2 : 0//2 is right, 0 is left
                             }    

@@ -3,13 +3,18 @@ import { CardDateText } from './CardDateText'
 import { CircleWithOutline } from './CircleWithOutline'
 import { CardBoard } from './CardBoard'
 import { SubCardImage } from './SubCardImage'
-// import { useEffect } from 'react'
+import { useEffect } from 'react'
+import * as THREE from 'three'
 
 const Card = ({ studioLogo, gameImage, gameTitle, dateText, position = [0, 0, 0],
     rotation = [0, 0, 0], onClick, displayCode }) => {
 
     const logoRadius = 0.35
     const distanceFromCard = 0.055;
+    useEffect(() => {//this will avoid the brightern effet on the image after image has been loaded
+        gameImage.colorSpace = THREE.SRGBColorSpace
+        studioLogo.colorSpace = THREE.SRGBColorSpace
+    }, [gameImage, studioLogo])
 
     // useEffect(() => {
     //     console.log("isShowTimeCode = " + isShowTimeCode)

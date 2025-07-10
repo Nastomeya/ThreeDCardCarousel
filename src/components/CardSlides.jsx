@@ -19,7 +19,7 @@ const cards = [
     {
         studioLogo: '/StudioImages/BlindSqurrelGames/Logo.png',
         gameImage: '/StudioImages/BlindSqurrelGames/GameImage.png',
-        gameTitle: "Number 03 ECT: LEGENDARY EDITION xxx",
+        gameTitle: "Number 03 ECT: LEGENDARY EDITION",
         dateText: "06 Oct 2013"
     },
     {
@@ -110,6 +110,7 @@ const CardSlides = () => {
         // onRest: () => console.log("onRest " + targetCenterIdx),//3
         // onResolve: () => console.log("onResolve " + targetCenterIdx),//4        
     })
+
     return (
         <>
             {cards.map((card, index) => {
@@ -152,7 +153,7 @@ const CardSlides = () => {
                             displayCode={
                                 (index === normalizedCenter) ? 1 ://1 is center card to show up
                                     (mod((serialisedCenterIndex - normalizedCenter + index), totalCount) > serialisedCenterIndex) ? 2 : 0//2 is right, 0 is left
-                            }    
+                            }
                         />
                     </animated.group>
                 )

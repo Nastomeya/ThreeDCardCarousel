@@ -26,9 +26,9 @@ export function CardBoard({ isShowTime }) {
                 roughness={isShowTime ? 1 : 0.15}
                 metalnessMap={metalnessMap}    // Where to be metal
                 metalness={0.5}
-                clearcoat={0.3}        // Adds clear coat layer
-                clearcoatRoughness={0.1}
-                reflectivity={0.5}     // High reflectivity
+                clearcoat={isShowTime ? 0.3 : 1}        // Adds clear coat layer
+                clearcoatRoughness={isShowTime ? 0.1 : 1}
+                reflectivity={isShowTime ? 0.5 : 1}     // High reflectivity
             >
                 <GradientTexture
                     colors={isShowTime ? ['white', '#3f4b6d', '#2a3a65', '#9ca4b2'] : ['#3f4b6d', '#606672', '#606672', '#3f4b6d']}

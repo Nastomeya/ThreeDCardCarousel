@@ -31,15 +31,23 @@ const Card = ({ studioLogo, gameImage, gameTitle, dateText, position = [0, 0, 0]
             <CardTitleText
                 position={isShowTimeCode === 1 ? [-1.4, 1.5, distanceFromCard] :
                     isShowTimeCode === 2 ?
-                        [1.8, 1.58, distanceFromCard] : [-1.8, -1.58, distanceFromCard]}
+                        [1.85, 0, distanceFromCard] : [-1.85, 0, distanceFromCard]}
                 rotation={isShowTimeCode === 1 ? [0, 0, 0] : isShowTimeCode === 2 ? [0, 0, -1.57] : [0, 0, 1.57]}
-                maxWidth={isShowTimeCode != 1 ? 3.2 : 2}
+                maxWidth={isShowTimeCode === 1 ? 2 : 3.2}
                 color={isShowTimeCode === 1 ? "#11234A" : "#9ca4b2"}
+                anchorX={isShowTimeCode === 1 ? "left" : "center"}
                 textAlign={isShowTimeCode === 1 ? "left" : "center"}
-            >
-                {gameTitle}
-            </CardTitleText>
-            <CardDateText position={[1.4, 0.8, distanceFromCard]}>{dateText}</CardDateText>
+                fontSize={isShowTimeCode === 1 ? 0.3 : 0.25}
+            >{gameTitle}</CardTitleText>
+
+            <CardDateText
+                position={isShowTimeCode === 1 ? [1.4, 0.8, distanceFromCard] :
+                    isShowTimeCode === 2 ?
+                        [1.53, -1.5, distanceFromCard] : [-1.53, 1.5, distanceFromCard]}
+                rotation={isShowTimeCode === 1 ? [0, 0, 0] : isShowTimeCode === 2 ? [0, 0, -1.57] : [0, 0, 1.57]}
+                color={isShowTimeCode === 1 ? "#11234A" : "#9ca4b2"}
+                textAlign={isShowTimeCode === 1 ? "right" : "center"}
+            >{dateText}</CardDateText>
 
             {isShowTimeCode === 1 && (
                 <>

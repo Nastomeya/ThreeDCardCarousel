@@ -13,13 +13,13 @@ const cards = [
     {
         studioLogo: '/StudioImages/BlindSqurrelGames/Logo.png',
         gameImage: '/StudioImages/BlindSqurrelGames/GameImage.png',
-        gameTitle: "Number Number 02 ECT: LEGENDARY EDITION",
+        gameTitle: "Number 02 ECT: LEGENDARY EDITION",
         dateText: "06 Oct 2013"
     },
     {
         studioLogo: '/StudioImages/BlindSqurrelGames/Logo.png',
         gameImage: '/StudioImages/BlindSqurrelGames/GameImage.png',
-        gameTitle: "Number 03 ECT: LEGENDARY EDITION",
+        gameTitle: "Number 03 ECT: LEGENDARY EDITION xxx",
         dateText: "06 Oct 2013"
     },
     {
@@ -64,6 +64,10 @@ function getShortestPath(_currentIdx, _clickedIdx, totalCount) {
     }
     return _currentIdx + minDelta
 }
+
+const mod = (n, m) => ((n % m) + m) % m;
+
+
 const CardSlides = () => {
     const studioLogos = useTexture(cards.map(c => c.studioLogo))
     const gameImages = useTexture(cards.map(c => c.gameImage))
@@ -147,8 +151,8 @@ const CardSlides = () => {
                             }}
                             isShowTimeCode={
                                 (index === normalizedCenter) ? 1 ://1 is center card to show up
-                                    (((serialisedCenterIndex - normalizedCenter + index) % totalCount) > serialisedCenterIndex) ? 2 : 0//2 is right, 0 is left
-                            }
+                                    (mod((serialisedCenterIndex - normalizedCenter + index), totalCount) > serialisedCenterIndex) ? 2 : 0//2 is right, 0 is left
+                            }    
                         />
                     </animated.group>
                 )

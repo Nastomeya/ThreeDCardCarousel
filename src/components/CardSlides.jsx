@@ -7,43 +7,43 @@ const cards = [
     {
         studioLogo: '/StudioImages/BlindSqurrelGames/Logo.png',
         gameImage: '/StudioImages/BlindSqurrelGames/GameImage.png',
-        gameTitle: "Number 01",
+        gameTitle: "Number 01 ECT: LEGENDARY EDITION",
         dateText: "06 Oct 2016"
     },
     {
         studioLogo: '/StudioImages/BlindSqurrelGames/Logo.png',
         gameImage: '/StudioImages/BlindSqurrelGames/GameImage.png',
-        gameTitle: "Number 02",
+        gameTitle: "Number Number 02 ECT: LEGENDARY EDITION",
         dateText: "06 Oct 2013"
     },
     {
         studioLogo: '/StudioImages/BlindSqurrelGames/Logo.png',
         gameImage: '/StudioImages/BlindSqurrelGames/GameImage.png',
-        gameTitle: "Number 03",
+        gameTitle: "Number 03 ECT: LEGENDARY EDITION",
         dateText: "06 Oct 2013"
     },
     {
         studioLogo: '/StudioImages/BlindSqurrelGames/Logo.png',
         gameImage: '/StudioImages/BlindSqurrelGames/GameImage.png',
-        gameTitle: "MASS EFFECT: LEGENDARY EDITION",
+        gameTitle: "Number 04 ECT: LEGENDARY EDITION",
         dateText: "13 May 2025"
     },
     {
         studioLogo: '/StudioImages/BlindSqurrelGames/Logo.png',
         gameImage: '/StudioImages/BlindSqurrelGames/GameImage.png',
-        gameTitle: "Number 05",
+        gameTitle: "Number 05 ECT: LEGENDARY EDITION",
         dateText: "06 Oct 2013"
     },
     {
         studioLogo: '/StudioImages/BlindSqurrelGames/Logo.png',
         gameImage: '/StudioImages/BlindSqurrelGames/GameImage.png',
-        gameTitle: "Number 06",
+        gameTitle: "Number 06 ECT: LEGENDARY EDITION",
         dateText: "06 Oct 2013"
     },
     {
         studioLogo: '/StudioImages/BlindSqurrelGames/Logo.png',
         gameImage: '/StudioImages/BlindSqurrelGames/GameImage.png',
-        gameTitle: "Number 07",
+        gameTitle: "Number 07 ECT: LEGENDARY EDITION",
         dateText: "06 Oct 2013"
     }
 ]
@@ -79,8 +79,8 @@ const CardSlides = () => {
     const [targetCenterIdx, setCenterIdx] = useState(Math.floor(totalCount / 2))
 
     function getWrappedOffset(_clickedIdx, _center) {
-        const normalizedCenter = ((_center % totalCount) + totalCount) % totalCount;
-        let offset = _clickedIdx - normalizedCenter
+        const _normalizedCenter = ((_center % totalCount) + totalCount) % totalCount;
+        let offset = _clickedIdx - _normalizedCenter
         if (offset > halfCount) //3.5
         {
             offset -= totalCount
@@ -90,7 +90,8 @@ const CardSlides = () => {
         }
         return offset;
     }
-
+    const normalizedCenter = ((targetCenterIdx % totalCount) + totalCount) % totalCount
+    const serialisedCenterIndex = Math.floor(halfCount)
     // Spring animation for the center index
     const { centerIdx } = useSpring({
         centerIdx: targetCenterIdx,
@@ -98,19 +99,21 @@ const CardSlides = () => {
             tension: 120,
             friction: 20,
             precision: 0.001
-        }
-        // onStart: () => console.log("onStart" + targetCenterIdx),//1
-        // onChange: () => console.log("onChange"),//2
-        // onRest: () => console.log("onRest" + targetCenterIdx)//3
+        },
+        // onProps: () => console.log("onProps: " + targetCenterIdx),//0
+        // onStart: () => console.log("onStart " + targetCenterIdx),//1
+        // onChange: () => console.log("onChange: " + targetCenterIdx),//2
+        // onRest: () => console.log("onRest " + targetCenterIdx),//3
+        // onResolve: () => console.log("onResolve " + targetCenterIdx),//4        
     })
     return (
         <>
-            {cards.map((card, clickedIdx) => {
+            {cards.map((card, index) => {
                 return (
                     <animated.group
-                        key={clickedIdx}
+                        key={index}
                         position={centerIdx.to(center => {
-                            const offset = getWrappedOffset(clickedIdx, center)
+                            const offset = getWrappedOffset(index, center)
                             const theta = offset * angleStep
                             const positionSpread = 1 + (Math.abs(offset) * 0.1)
                             const baseX = Math.sin(theta) * radius
@@ -119,28 +122,33 @@ const CardSlides = () => {
                             return [x, 0, z]
                         })}
                         rotation={centerIdx.to(center => {
-                            const offset = getWrappedOffset(clickedIdx, center)
+                            const offset = getWrappedOffset(index, center)
                             const theta = offset * angleStep
                             const rotationScale = 1 + (3 / (Math.abs(offset) + 0.1))
                             const rotationY = Math.max(-maxAngle, Math.min(maxAngle, -theta * rotationScale))
                             return [0, rotationY, 0]
                         })}
                         scale={centerIdx.to(center => {
-                            const offset = getWrappedOffset(clickedIdx, center)
+                            const offset = getWrappedOffset(index, center)
                             const absOffset = Math.abs(offset)
                             const scaleFactor = Math.exp(-absOffset * 1.2)
                             return 1 + (0.2 * scaleFactor)
                         })}
                     >
                         <Card
-                            studioLogo={studioLogos[clickedIdx]}
-                            gameImage={gameImages[clickedIdx]}
+                            studioLogo={studioLogos[index]}
+                            gameImage={gameImages[index]}
                             gameTitle={card.gameTitle}
                             dateText={card.dateText}
                             onClick={() => {
-                                const shortestIndex = getShortestPath(targetCenterIdx, clickedIdx, totalCount)
+                                const shortestIndex = getShortestPath(targetCenterIdx, index, totalCount)
                                 setCenterIdx(shortestIndex)
+                                // console.log("normalizedCenter:  " + normalizedCenter + "   clickedIdx: " + clickedIdx)
                             }}
+                            isShowTimeCode={
+                                (index === normalizedCenter) ? 1 ://1 is center card to show up
+                                    (((serialisedCenterIndex - normalizedCenter + index) % totalCount) > serialisedCenterIndex) ? 2 : 0//2 is right, 0 is left
+                            }
                         />
                     </animated.group>
                 )

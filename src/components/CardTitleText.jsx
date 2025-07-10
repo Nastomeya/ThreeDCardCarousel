@@ -18,11 +18,12 @@ import { Text } from '@react-three/drei'
 export function CardTitleText({
     children,
     font = "/Fonts/BebasNeue-Regular.ttf",
-    fontSize = 0.27,
+    fontSize = 0.3,
     color = "#11234A",
     position = [0, 0, 0],
+    rotation = [0, 0, 0],
     lineHeight = 1.215,
-    maxWidth = 1.8,
+    maxWidth = 2,
     anchorX = "left",
     anchorY = "top",
     textAlign = "left",
@@ -34,6 +35,7 @@ export function CardTitleText({
             fontSize={fontSize}
             color={color}
             position={position}
+            rotation={rotation}
             lineHeight={lineHeight}
             maxWidth={maxWidth}
             anchorX={anchorX}

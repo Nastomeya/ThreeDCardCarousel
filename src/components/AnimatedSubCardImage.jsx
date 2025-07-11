@@ -12,7 +12,7 @@ const DISPLAY_MODES = {
 const SPRING_CONFIG = {
     mass: 5,
     tension: 120,
-    friction: 120,
+    friction: 30,
     precision: 0.001,
 };
 

@@ -1,12 +1,8 @@
-// import { CardTitleText } from './CardTitleText'
 import { AnimatedCardTitleText } from './AnimatedCardTitleText'
 import { AnimatedSubCardImage } from './AnimatedSubCardImage'
 import { AnimatedCardBoard } from './AnimatedCardBoard'
 import { AnimatedCardDateText } from './AnimatedCardDateText'
-// import { CardDateText } from './CardDateText'
 import { LogoImageWithOutline } from './LogoImageWithOutline'
-// import { CardBoard } from './CardBoard'
-// import { SubCardImage } from './SubCardImage'
 import { useEffect } from 'react'
 import * as THREE from 'three'
 
@@ -35,7 +31,7 @@ const Card = ({ studioLogo, website, gameImage, gameTitle, dateText, position = 
             cursor="pointer"
         >
             <AnimatedCardBoard displayCode={displayCode} />
-            {/* <CardBoard isShowTime={displayCode === 1} /> */}
+
             <AnimatedCardTitleText
                 displayCode={displayCode}
                 distanceFromCard={distanceFromCard}
@@ -46,13 +42,6 @@ const Card = ({ studioLogo, website, gameImage, gameTitle, dateText, position = 
                 distanceFromCard={distanceFromCard}
                 dateText={dateText}
             />
-            {/* <CardDateText
-                displayCode={displayCode}
-                position={displayCode === 1 ? [1.4, 0.8, distanceFromCard] :
-                    displayCode === 2 ?
-                        [1.53, -1.5, distanceFromCard] : [-1.53, 1.5, distanceFromCard]}
-                rotation={displayCode === 1 ? [0, 0, 0] : displayCode === 2 ? [0, 0, -1.57] : [0, 0, 1.57]}
-            >{dateText}</CardDateText> */}
 
             <AnimatedSubCardImage
                 displayCode={displayCode}

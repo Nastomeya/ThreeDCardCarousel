@@ -18,7 +18,6 @@ const SPRING_CONFIG = {
 export function AnimatedCardBoard({ displayCode }) {
 
     const isCentre = displayCode === DISPLAY_MODES.CENTRE
-
     // Define both states clearly
     const centreState = {
         colors: ['white', '#3f4b6d', '#2a3a65', '#9ca4b2'],

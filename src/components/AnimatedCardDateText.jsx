@@ -48,9 +48,7 @@ export function AnimatedCardDateText({ displayCode, distanceFromCard, dateText }
 
     // spring for smooth transitions
     const props = useSpring({
-        to: {
-            color: target.color
-        },
+        to: { color: target.color },
         config: SPRING_CONFIG
     })
 

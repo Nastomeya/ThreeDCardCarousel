@@ -11,8 +11,8 @@ const DISPLAY_MODES = {
 
 const SPRING_CONFIG = {
     mass: 5,
-    tension: 120,
-    friction: 30,
+    tension: 70,
+    friction: 80,
     precision: 0.001,
 };
 
@@ -20,8 +20,8 @@ export function AnimatedSubCardImage({ displayCode, position = [0, 0, 0], gameIm
 
     const isCentre = displayCode === DISPLAY_MODES.CENTRE
     // animate only opacity
-    const { opacity } = useSpring({
-        to: { opacity: isCentre ? 1 : 0 },
+    const props = useSpring({
+        to: { opacity: isCentre ? 1 : 0, },
         config: SPRING_CONFIG,
     })
 
@@ -35,7 +35,7 @@ export function AnimatedSubCardImage({ displayCode, position = [0, 0, 0], gameIm
                 height={2}
                 radius={0.1}
                 // animated value
-                opacity={opacity}
+                opacity={props.opacity}
             />
         </a.group>
     )

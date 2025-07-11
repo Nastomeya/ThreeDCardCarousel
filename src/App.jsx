@@ -35,7 +35,7 @@ export default function App() {
       }}
     >
       {/* <OrthographicCamera makeDefault position={[0, 0, 10]} zoom={500} /> */}
-      <OrbitControls enableZoom enablePan enableRotate target={[0, 0, 0]} enableDamping={false} />
+      {/* <OrbitControls enableZoom enablePan enableRotate target={[0, 0, 0]} enableDamping={false} /> */}
       <ambientLight intensity={2} />
       <directionalLight position={[0, 0, 1]} intensity={1} target-position={[0, 0, 0]} />
       <CardSlides />

@@ -17,8 +17,9 @@ import { Text } from '@react-three/drei'
  */
 export function CardTitleText({
     displayCode,
+    color,
+    
     font = "/Fonts/BebasNeue-Regular.ttf",
-    color = (displayCode === 1 ? "#11234A" : "#9ca4b2"),
     maxWidth = (displayCode === 1 ? 2 : 3.2),
     anchorX = (displayCode === 1 ? "left" : "center"),
     textAlign = (displayCode === 1 ? "left" : "center"),

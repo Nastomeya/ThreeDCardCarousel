@@ -6,42 +6,49 @@ import { useSpring, animated } from '@react-spring/three'
 const cards = [
     {
         studioLogo: '/StudioImages/BlindSqurrelGames/Logo.png',
+        website: 'https://blindsquirrelentertainment.com/',
         gameImage: '/StudioImages/BlindSqurrelGames/GameImage.png',
         gameTitle: "Number 01 ECT: LEGENDARY EDITION",
         dateText: "06 Oct 2016"
     },
     {
         studioLogo: '/StudioImages/BlindSqurrelGames/Logo.png',
+        website: 'https://blindsquirrelentertainment.com/',
         gameImage: '/StudioImages/BlindSqurrelGames/GameImage.png',
         gameTitle: "Number 02 ECT: LEGENDARY EDITION",
         dateText: "06 Oct 2013"
     },
     {
         studioLogo: '/StudioImages/BlindSqurrelGames/Logo.png',
+        website: 'https://blindsquirrelentertainment.com/',
         gameImage: '/StudioImages/BlindSqurrelGames/GameImage.png',
         gameTitle: "Number 03 ECT: LEGENDARY EDITION",
         dateText: "06 Oct 2013"
     },
     {
         studioLogo: '/StudioImages/BlindSqurrelGames/Logo.png',
+        website: 'https://blindsquirrelentertainment.com/',
         gameImage: '/StudioImages/BlindSqurrelGames/GameImage.png',
         gameTitle: "Number 04 ECT: LEGENDARY EDITION",
         dateText: "13 May 2025"
     },
     {
         studioLogo: '/StudioImages/BlindSqurrelGames/Logo.png',
+        website: 'https://blindsquirrelentertainment.com/',
         gameImage: '/StudioImages/BlindSqurrelGames/GameImage.png',
         gameTitle: "Number 05 ECT: LEGENDARY EDITION",
         dateText: "06 Oct 2013"
     },
     {
         studioLogo: '/StudioImages/BlindSqurrelGames/Logo.png',
+        website: 'https://blindsquirrelentertainment.com/',
         gameImage: '/StudioImages/BlindSqurrelGames/GameImage.png',
         gameTitle: "Number 06 ECT: LEGENDARY EDITION",
         dateText: "06 Oct 2013"
     },
     {
         studioLogo: '/StudioImages/BlindSqurrelGames/Logo.png',
+        website: 'https://blindsquirrelentertainment.com/',
         gameImage: '/StudioImages/BlindSqurrelGames/GameImage.png',
         gameTitle: "Number 07 ECT: LEGENDARY EDITION",
         dateText: "06 Oct 2013"
@@ -100,6 +107,7 @@ const CardSlides = () => {
     const { centerIdx } = useSpring({
         centerIdx: targetCenterIdx,
         config: {
+            mass: 1,
             tension: 120,
             friction: 20,
             precision: 0.001
@@ -142,13 +150,13 @@ const CardSlides = () => {
                     >
                         <Card
                             studioLogo={studioLogos[index]}
+                            website={card.website}
                             gameImage={gameImages[index]}
                             gameTitle={card.gameTitle}
                             dateText={card.dateText}
                             onClick={() => {
                                 const shortestIndex = getShortestPath(targetCenterIdx, index, totalCount)
                                 setCenterIdx(shortestIndex)
-                                // console.log("normalizedCenter:  " + normalizedCenter + "   clickedIdx: " + clickedIdx)
                             }}
                             displayCode={
                                 (index === normalizedCenter) ? 1 ://1 is center card to show up

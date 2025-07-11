@@ -3,8 +3,7 @@ import { useShapeGeometryWithUV } from './useShapeGeometryWithUV'
 import { useMemo } from 'react'
 import * as THREE from 'three'
 
-export function CircleWithOutline({ radius, texture, outter, position = [0, 0, 0], strokeColor = 'black', segments = 64 }) {
-
+export function LogoImageWithOutline({ radius, texture, outter, website, position = [0, 0, 0], strokeColor = 'black', segments = 64 }) {
     const imgShape = useMemo(() => createCircleShape(radius), [])
     const imgShapeWithUV = useShapeGeometryWithUV(imgShape)
     const ringGeometry = useMemo(

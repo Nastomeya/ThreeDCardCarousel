@@ -1,12 +1,16 @@
-import { CardTitleText } from './CardTitleText'
-import { CardDateText } from './CardDateText'
-import { CircleWithOutline } from './CircleWithOutline'
-import { CardBoard } from './CardBoard'
-import { SubCardImage } from './SubCardImage'
+// import { CardTitleText } from './CardTitleText'
+import { AnimatedCardTitleText } from './AnimatedCardTitleText'
+import { AnimatedSubCardImage } from './AnimatedSubCardImage'
+import { AnimatedCardBoard } from './AnimatedCardBoard'
+import { AnimatedCardDateText } from './AnimatedCardDateText'
+// import { CardDateText } from './CardDateText'
+import { LogoImageWithOutline } from './LogoImageWithOutline'
+// import { CardBoard } from './CardBoard'
+// import { SubCardImage } from './SubCardImage'
 import { useEffect } from 'react'
 import * as THREE from 'three'
 
-const Card = ({ studioLogo, gameImage, gameTitle, dateText, position = [0, 0, 0],
+const Card = ({ studioLogo, website, gameImage, gameTitle, dateText, position = [0, 0, 0],
     rotation = [0, 0, 0], onClick, displayCode }) => {
 
     const logoRadius = 0.35
@@ -30,30 +34,33 @@ const Card = ({ studioLogo, gameImage, gameTitle, dateText, position = [0, 0, 0]
             }}
             cursor="pointer"
         >
-            <CardBoard isShowTime={displayCode === 1} />
-
-            <CardTitleText
+            <AnimatedCardBoard displayCode={displayCode} />
+            {/* <CardBoard isShowTime={displayCode === 1} /> */}
+            <AnimatedCardTitleText
                 displayCode={displayCode}
-                position={displayCode === 1 ? [-1.4, 1.5, distanceFromCard] :
-                    displayCode === 2 ?
-                        [1.85, 0, distanceFromCard] : [-1.85, 0, distanceFromCard]}
-                rotation={displayCode === 1 ? [0, 0, 0] : displayCode === 2 ? [0, 0, -1.57] : [0, 0, 1.57]}
-            >{gameTitle}</CardTitleText>
-
-            <CardDateText
+                distanceFromCard={distanceFromCard}
+                gameTitle={gameTitle}
+            />
+            <AnimatedCardDateText
+                displayCode={displayCode}
+                distanceFromCard={distanceFromCard}
+                dateText={dateText}
+            />
+            {/* <CardDateText
                 displayCode={displayCode}
                 position={displayCode === 1 ? [1.4, 0.8, distanceFromCard] :
                     displayCode === 2 ?
                         [1.53, -1.5, distanceFromCard] : [-1.53, 1.5, distanceFromCard]}
                 rotation={displayCode === 1 ? [0, 0, 0] : displayCode === 2 ? [0, 0, -1.57] : [0, 0, 1.57]}
-            >{dateText}</CardDateText>
+            >{dateText}</CardDateText> */}
 
-            {displayCode === 1 && (
-                <>
-                    <CircleWithOutline position={[1, 1.2, distanceFromCard]} radius={logoRadius} texture={studioLogo} outter={logoRadius + 0.02} />
-                    <SubCardImage position={[0, -0.4, distanceFromCard]} texture={gameImage} width={2.8} height={2} radius={0.1} />
-                </>
-            )}
+            <AnimatedSubCardImage
+                displayCode={displayCode}
+                position={[0, -0.4, distanceFromCard]}
+                gameImage={gameImage}
+            />
+
+            {displayCode === 1 && (<><LogoImageWithOutline position={[1, 1.2, distanceFromCard]} radius={logoRadius} texture={studioLogo} website={website} outter={logoRadius + 0.02} /></>)}
         </group>
     )
 }

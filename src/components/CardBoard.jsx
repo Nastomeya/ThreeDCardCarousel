@@ -5,7 +5,7 @@ import { useExtrudeGeometryWithUV } from './useExtrudeGeometryWithUV'
 import { GradientTexture } from '@react-three/drei'
 import { useLoader } from '@react-three/fiber'
 
-export function CardBoard({ isShowTime, colors, stops }) {
+export function CardBoard({ isShowTime, colors, stops, rotation }) {
 
     const backgroundShape = useMemo(() => createRoundedRectShape(4, 3.4, 0.05), [createRoundedRectShape])
     const backgroundShapeWithUV = useExtrudeGeometryWithUV(backgroundShape, { depth: 0.05, bevelEnabled: false })
@@ -31,10 +31,9 @@ export function CardBoard({ isShowTime, colors, stops }) {
                 reflectivity={isShowTime ? 0.5 : 1}     // High reflectivity
             >
                 <GradientTexture
-                    // colors={isShowTime ? ['white', '#3f4b6d', '#2a3a65', '#9ca4b2'] : ['#3f4b6d', '#606672', '#606672', '#3f4b6d']}
                     colors={colors}
                     stops={stops}
-                    // rotation={isShowTime ? (0) : (Math.PI / 2)}
+                    rotation={rotation}
                     center={[0.5, 0.5]}
                 />
             </meshPhysicalMaterial>

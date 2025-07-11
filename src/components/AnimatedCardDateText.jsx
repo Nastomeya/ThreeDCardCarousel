@@ -1,15 +1,9 @@
 import { a, useSpring } from '@react-spring/three'
 import { CardDateText as BaseCardDateText } from './CardDateText'
 import { useMemo } from 'react';
+import { DISPLAY_MODES } from './DisplayModes'
 
 const CardDateText = a(BaseCardDateText)
-
-const DISPLAY_MODES = {
-    CENTRE: 1,
-    RIGHT: 2,
-    LEFT: 0,
-};
-
 const SPRING_CONFIG = {
     mass: 3,
     tension: 120,

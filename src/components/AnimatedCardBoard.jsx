@@ -1,12 +1,8 @@
 import { a, useSpring } from '@react-spring/three'
 import { CardBoard as BaseCardBoard } from './CardBoard'
+import { DISPLAY_MODES } from './DisplayModes'
 
 const CardBoard = a(BaseCardBoard)
-const DISPLAY_MODES = {
-    CENTRE: 1,
-    RIGHT: 2,
-    LEFT: 0,
-};
 
 const SPRING_CONFIG = {
     tension: 50,
@@ -16,6 +12,7 @@ const SPRING_CONFIG = {
 };
 
 const interpolateColor = (color1, color2, factor) => {
+
     // Convert hex to RGB
     const hexToRgb = (hex) => {
         const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)

@@ -1,14 +1,9 @@
 import { a, useSpring } from '@react-spring/three'
 import { CardTitleText as BaseCardTitleText } from './CardTitleText'
 import { useMemo } from 'react';
+import { DISPLAY_MODES } from './DisplayModes'
 
 const CardTitleText = a(BaseCardTitleText)
-
-const DISPLAY_MODES = {
-    CENTRE: 1,
-    RIGHT: 2,
-    LEFT: 0,
-};
 
 const SPRING_CONFIG = {
     mass: 3,
@@ -51,11 +46,6 @@ export function AnimatedCardTitleText({ displayCode, distanceFromCard, gameTitle
         to: { color: target.color },
         config: SPRING_CONFIG
     })
-
-    // if (displayCode !== DISPLAY_MODES.PRIMARY) {
-    //     return null;
-    // }
-
     return (
         <a.group position={target.position} rotation={target.rotation}>
             <CardTitleText displayCode={displayCode} color={props.color} >{gameTitle}</CardTitleText>

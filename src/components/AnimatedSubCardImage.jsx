@@ -1,13 +1,8 @@
 import { a, useSpring } from '@react-spring/three'
 import { SubCardImage as BaseSubCardImage } from './SubCardImage'
+import { DISPLAY_MODES } from './DisplayModes'
 
 const SubCardImage = a(BaseSubCardImage)
-
-const DISPLAY_MODES = {
-    CENTRE: 1,
-    RIGHT: 2,
-    LEFT: 0,
-};
 
 const SPRING_CONFIG = {
     mass: 5,

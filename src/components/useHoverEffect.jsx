@@ -22,6 +22,6 @@ export function useHoverEffect() {
     return {
         isHovered,
         handlePointerOver,
-        handlePointerOut
+        handlePointerOut,
     }
 }

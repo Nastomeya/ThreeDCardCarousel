@@ -11,7 +11,7 @@ export function LogoImageWithOutline({ radius, texture, outter, website, positio
 
     const handleClick = () => window.open(website, '_blank', 'noopener,noreferrer');
 
-    const hoverEffect = useHoverEffect();
+    const { isHovered, handlePointerOver, handlePointerOut } = useHoverEffect()
     const hoverStrokeColor = 'orange'
 
     return (
@@ -23,11 +23,11 @@ export function LogoImageWithOutline({ radius, texture, outter, website, positio
                 castShadow={true}
                 frustumCulled={false}
                 onClick={handleClick}
-                onPointerOver={hoverEffect.handlePointerOver}
-                onPointerOut={hoverEffect.handlePointerOut}
+                onPointerOver={handlePointerOver}
+                onPointerOut={handlePointerOut}
             >
-                <meshLambertMaterial map={texture} 
-                    emissive={hoverEffect.isHovered ? hoverStrokeColor : 'black'}
+                <meshLambertMaterial map={texture}
+                    emissive={isHovered ? hoverStrokeColor : 'black'}
                 />
             </mesh>
 

@@ -44,8 +44,9 @@ export function AnimatedCardTitleText({ displayCode, distanceFromCard, gameTitle
     // spring for smooth transitions
     const props = useSpring({
         to: { color: target.color },
-        config: SPRING_CONFIG
+        config: SPRING_CONFIG,
     })
+
     return (
         <a.group position={target.position} rotation={target.rotation}>
             <CardTitleText displayCode={displayCode} color={props.color} >{gameTitle}</CardTitleText>

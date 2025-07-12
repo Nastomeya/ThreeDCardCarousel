@@ -5,16 +5,29 @@ import { useExtrudeGeometryWithUV } from './useExtrudeGeometryWithUV'
 import { GradientTexture } from '@react-three/drei'
 import { useLoader } from '@react-three/fiber'
 
-export function CardBoard({ isShowTime, colors, stops, rotation }) {
 
-    const backgroundShape = useMemo(() => createRoundedRectShape(4, 3.4, 0.05), [createRoundedRectShape])
-    const backgroundShapeWithUV = useExtrudeGeometryWithUV(backgroundShape, { depth: 0.05, bevelEnabled: false })
+// Preload textures
+const cardFolderName = "/CardTextures";
+useLoader.preload(THREE.TextureLoader, cardFolderName + '/BrushedIron1K_Normal.png');
+useLoader.preload(THREE.TextureLoader, cardFolderName + '/BrushedIron1K_BaseColor.png');
+useLoader.preload(THREE.TextureLoader, cardFolderName + '/BrushedIron1K_Roughness.png');
+useLoader.preload(THREE.TextureLoader, cardFolderName + '/BrushedIron1K_Metallic.png');
 
-    const cardFolderName = "/CardTextures";
+// Custom hook for texture loading
+function useCardTextures() {
     const metalNormalMap = useLoader(THREE.TextureLoader, cardFolderName + '/BrushedIron1K_Normal.png')
     const metalBaseMap = useLoader(THREE.TextureLoader, cardFolderName + '/BrushedIron1K_BaseColor.png')
     const metalRoughnessMap = useLoader(THREE.TextureLoader, cardFolderName + '/BrushedIron1K_Roughness.png')
     const metalnessMap = useLoader(THREE.TextureLoader, cardFolderName + '/BrushedIron1K_Metallic.png')
+
+    return { metalNormalMap, metalBaseMap, metalRoughnessMap, metalnessMap }
+}
+
+export function CardBoard({ isShowTime, colors, stops, rotation }) {
+
+    const { metalNormalMap, metalBaseMap, metalRoughnessMap, metalnessMap } = useCardTextures()
+    const backgroundShape = useMemo(() => createRoundedRectShape(4, 3.4, 0.05), [createRoundedRectShape])
+    const backgroundShapeWithUV = useExtrudeGeometryWithUV(backgroundShape, { depth: 0.05, bevelEnabled: false })
 
     return (
         <mesh position={[0, 0, 0]} geometry={backgroundShapeWithUV} receiveShadow={true} castShadow={true} frustumCulled={false}>

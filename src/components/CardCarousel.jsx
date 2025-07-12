@@ -1,8 +1,9 @@
 import Card from './Card'
-import { useTexture } from "@react-three/drei";
-import { useState, useEffect } from 'react'
+import { useTexture } from "@react-three/drei"
+import { useState, useEffect, useMemo } from 'react'
 import { useSpring, animated } from '@react-spring/three'
 import { useMod } from './useMod'
+
 // Function to find the shortest path between current and target
 function getShortestPath(_currentIdx, _clickedIdx, totalCount) {
     const normalisedDirect = (_clickedIdx - (_currentIdx) % totalCount) % (totalCount)
@@ -19,8 +20,10 @@ function getShortestPath(_currentIdx, _clickedIdx, totalCount) {
 // const mod = (n, m) => ((n % m) + m) % m;
 
 const CardCarousel = ({ datas, onCardClick, dotClickedIndex }) => {
-    const studioLogos = useTexture(datas.map(c => c.studioLogo))
-    const gameImages = useTexture(datas.map(c => c.gameImage))
+    const studioLogoPaths = useMemo(() => datas.map(c => c.studioLogo), [datas])
+    const gameImagePaths = useMemo(() => datas.map(c => c.gameImage), [datas])
+    const studioLogos = useTexture(studioLogoPaths)
+    const gameImages = useTexture(gameImagePaths)
 
     const radius = 12
     const angleStep = 0.1 // radians, ~16°//0.13

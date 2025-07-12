@@ -11,12 +11,8 @@ function getShortestPath(_currentIdx, _clickedIdx, totalCount) {
     let minDelta = normalisedDirect
     const isForward = Math.abs(wrapForward) < Math.abs(minDelta)
     const isBackward = Math.abs(wrapBackward) < Math.abs(minDelta)
-    if (isForward) {
-        minDelta = wrapForward
-    }
-    else if (isBackward) {
-        minDelta = wrapBackward
-    }
+    if (isForward) { minDelta = wrapForward }
+    else if (isBackward) { minDelta = wrapBackward }
     return _currentIdx + minDelta
 }
 

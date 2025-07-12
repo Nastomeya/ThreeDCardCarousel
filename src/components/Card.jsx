@@ -23,8 +23,8 @@ const Card = ({ studioLogo, website, gameImage, gameTitle, dateText, position = 
             onClick={e => {
                 e.stopPropagation();
                 onClick?.(); // Call your passed handler if present
-            }}>
-
+            }}
+        >
             <AnimatedCardBoard displayCode={displayCode} />
 
             <AnimatedCardTitleText

@@ -1,12 +1,16 @@
 import * as THREE from 'three';
 
-const Dot = ({ isDisplayed }) => {
+const Dot = ({ id, currentIndex, radius, segments, onClick }) => {
+    const isDisplayed = id === currentIndex;
     return (
-        <group>
+        <group onClick={e => {
+            e.stopPropagation();
+            onClick?.();
+        }}>
             <mesh>
-                <circleGeometry args={[0.2, 32]} /> {/* 2D circle, radius=0.2, 32 segments */}
+                <circleGeometry args={[radius, segments]} />
                 <meshStandardMaterial
-                    color={isDisplayed ? 'white' : 'gray'} // Highlight center dot
+                    color={isDisplayed ? 'white' : '#3f4d6b'} // Highlight center dot
                     metalness={0.5}
                     roughness={0.5}
                     side={THREE.DoubleSide} // Ensure circle is visible from both sides

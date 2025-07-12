@@ -1,9 +1,16 @@
 import { useThree } from '@react-three/fiber';
 import Dot from './Dot';
 
-const DotCarousel = ({ dotDatas, currentIndex }) => {
+
+const DOT_SETTING = {
+    radius: 0.05,//0.1,//
+    segments: 16,//32,//
+    space: 0.175//0.5,//
+};
+
+const DotCarousel = ({ datas, onDotClick, cardClickedIndex }) => {
     const { camera } = useThree();
-    const totalCount = dotDatas.length;
+    const totalCount = datas.length;
 
     if (totalCount === 0) {
         return <group />;
@@ -16,7 +23,7 @@ const DotCarousel = ({ dotDatas, currentIndex }) => {
     const bottomY = -viewportHeight / 2 + 3; // Bottom edge + small offset
 
     function getPosition(index) {
-        const space = 1
+        const space = DOT_SETTING.space
         const totalWidth = (totalCount - 1) * space
         const x = index * space - totalWidth / 2; // Center the dots by offsetting        return [x, 0, 0]
         return [x, bottomY, 0]; // x: centered, y: bottom, z: 0
@@ -24,10 +31,16 @@ const DotCarousel = ({ dotDatas, currentIndex }) => {
 
     return (
         <>
-            {dotDatas.map((dot, index) => {
+            {datas.map((dot) => {
                 return (
-                    <group key={dot.id} position={getPosition(index)}>
-                        <Dot isDisplayed={dot.id === currentIndex} />
+                    <group key={dot.id} position={getPosition(dot.id)}>
+                        <Dot
+                            id={dot.id}
+                            currentIndex={cardClickedIndex}
+                            radius={DOT_SETTING.radius}
+                            segments={DOT_SETTING.segments}
+                            onClick={() => { onDotClick?.(dot.id) }}
+                        />
                     </group>
                 )
             })}

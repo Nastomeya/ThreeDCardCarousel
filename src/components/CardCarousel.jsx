@@ -1,6 +1,6 @@
 import Card from './Card'
 import { useTexture } from "@react-three/drei";
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useSpring, animated } from '@react-spring/three'
 
 // Function to find the shortest path between current and target
@@ -22,16 +22,16 @@ function getShortestPath(_currentIdx, _clickedIdx, totalCount) {
 
 const mod = (n, m) => ((n % m) + m) % m;
 
-const CardCarousel = ({cardDatas}) => {
-    const studioLogos = useTexture(cardDatas.map(c => c.studioLogo))
-    const gameImages = useTexture(cardDatas.map(c => c.gameImage))
+const CardCarousel = ({ datas, onCardClick, dotClickedIndex }) => {
+    const studioLogos = useTexture(datas.map(c => c.studioLogo))
+    const gameImages = useTexture(datas.map(c => c.gameImage))
 
     const radius = 12
     const angleStep = 0.1 // radians, ~16°//0.13
     const maxAngle = 0.4
     const maxZOffset = 1  // How much the outer cards recede
 
-    const totalCount = cardDatas.length;
+    const totalCount = datas.length;
     const halfCount = totalCount / 2
 
     const [targetCenterIdx, setCenterIdx] = useState(Math.floor(totalCount / 2))
@@ -63,9 +63,17 @@ const CardCarousel = ({cardDatas}) => {
         // onResolve: () => console.log("onResolve " + targetCenterIdx),//4        
     })
 
+    function makeClickedCardToCentre(clickedIndex) {
+        const shortestIndex = getShortestPath(targetCenterIdx, clickedIndex, totalCount);
+        setCenterIdx(shortestIndex);
+    }
+
+
+    useEffect(() => { makeClickedCardToCentre(dotClickedIndex); }, [dotClickedIndex]);
+
     return (
         <>
-            {cardDatas.map((card, index) => {
+            {datas.map((card, index) => {
                 return (
                     <animated.group
                         key={index}
@@ -99,8 +107,8 @@ const CardCarousel = ({cardDatas}) => {
                             gameTitle={card.gameTitle}
                             dateText={card.dateText}
                             onClick={() => {
-                                const shortestIndex = getShortestPath(targetCenterIdx, index, totalCount)
-                                setCenterIdx(shortestIndex)
+                                makeClickedCardToCentre(index)
+                                onCardClick?.(index)
                             }}
                             displayCode={
                                 (index === normalizedCenter) ? 1 ://1 is center card to show up

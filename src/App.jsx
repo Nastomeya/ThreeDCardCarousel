@@ -1,12 +1,12 @@
 import React from 'react'
 import { Canvas } from '@react-three/fiber'
 import { OrthographicCamera, OrbitControls, PerspectiveCamera } from '@react-three/drei'
-import CardCarousel from './components/CardCarousel'
-import DotCarousel from './components/DotCarousel'
+import CarouselContainer from './components/CarouselContainer'
 
 
-const cardDatas = [
+const datas = [
   {
+    id: 0,
     studioLogo: '/StudioImages/BlindSqurrelGames/Logo.png',
     website: 'https://blindsquirrelentertainment.com/',
     gameImage: '/StudioImages/BlindSqurrelGames/GameImage.png',
@@ -14,6 +14,7 @@ const cardDatas = [
     dateText: "06 Oct 2016"
   },
   {
+    id: 1,
     studioLogo: '/StudioImages/BlindSqurrelGames/Logo.png',
     website: 'https://blindsquirrelentertainment.com/',
     gameImage: '/StudioImages/BlindSqurrelGames/GameImage.png',
@@ -21,6 +22,7 @@ const cardDatas = [
     dateText: "06 Oct 2013"
   },
   {
+    id: 2,
     studioLogo: '/StudioImages/BlindSqurrelGames/Logo.png',
     website: 'https://blindsquirrelentertainment.com/',
     gameImage: '/StudioImages/BlindSqurrelGames/GameImage.png',
@@ -28,6 +30,7 @@ const cardDatas = [
     dateText: "06 Oct 2013"
   },
   {
+    id: 3,
     studioLogo: '/StudioImages/BlindSqurrelGames/Logo.png',
     website: 'https://blindsquirrelentertainment.com/',
     gameImage: '/StudioImages/BlindSqurrelGames/GameImage.png',
@@ -35,6 +38,7 @@ const cardDatas = [
     dateText: "13 May 2025"
   },
   {
+    id: 4,
     studioLogo: '/StudioImages/BlindSqurrelGames/Logo.png',
     website: 'https://blindsquirrelentertainment.com/',
     gameImage: '/StudioImages/BlindSqurrelGames/GameImage.png',
@@ -42,6 +46,7 @@ const cardDatas = [
     dateText: "06 Oct 2013"
   },
   {
+    id: 5,
     studioLogo: '/StudioImages/BlindSqurrelGames/Logo.png',
     website: 'https://blindsquirrelentertainment.com/',
     gameImage: '/StudioImages/BlindSqurrelGames/GameImage.png',
@@ -49,6 +54,7 @@ const cardDatas = [
     dateText: "06 Oct 2013"
   },
   {
+    id: 6,
     studioLogo: '/StudioImages/BlindSqurrelGames/Logo.png',
     website: 'https://blindsquirrelentertainment.com/',
     gameImage: '/StudioImages/BlindSqurrelGames/GameImage.png',
@@ -56,16 +62,6 @@ const cardDatas = [
     dateText: "06 Oct 2013"
   }
 ]
-
-const dotDatas = [
-  { id: 0 },
-  { id: 1 },
-  { id: 2 },
-  { id: 3 },
-  { id: 4 },
-  { id: 5 },
-  { id: 6 },
-];
 
 export default function App() {
   return (
@@ -102,8 +98,9 @@ export default function App() {
       <OrbitControls enableZoom enablePan enableRotate target={[0, 0, 0]} enableDamping={false} />
       <ambientLight intensity={2} />
       <directionalLight position={[0, 0, 1]} intensity={1} target-position={[0, 0, 0]} />
-      <CardCarousel cardDatas={cardDatas} />
-      <DotCarousel dotDatas={dotDatas} currentIndex={3} />
+      {/* <CardCarousel cardDatas={cardDatas} />
+      <DotCarousel dotDatas={dotDatas} currentIndex={3} /> */}
+      <CarouselContainer datas={datas} />
     </Canvas>
   )
 }

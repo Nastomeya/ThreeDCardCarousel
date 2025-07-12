@@ -6,8 +6,8 @@ import { LogoImageWithOutline } from './LogoImageWithOutline'
 import { useEffect } from 'react'
 import * as THREE from 'three'
 
-const Card = ({ studioLogo, website, gameImage, gameTitle, dateText, position = [0, 0, 0],
-    rotation = [0, 0, 0], onClick, displayCode }) => {
+
+const Card = ({ studioLogo, website, gameImage, gameTitle, dateText, position = [0, 0, 0], rotation = [0, 0, 0], onClick, displayCode }) => {
 
     const logoRadius = 0.35
     const distanceFromCard = 0.055;
@@ -23,9 +23,8 @@ const Card = ({ studioLogo, website, gameImage, gameTitle, dateText, position = 
             onClick={e => {
                 e.stopPropagation();
                 onClick?.(); // Call your passed handler if present
-            }}
-            cursor="pointer"
-        >
+            }}>
+
             <AnimatedCardBoard displayCode={displayCode} />
 
             <AnimatedCardTitleText

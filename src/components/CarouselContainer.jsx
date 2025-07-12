@@ -3,6 +3,7 @@ import CardCarousel from './CardCarousel';
 import DotCarousel from './DotCarousel';
 import SliderArrows from './SliderArrows';
 
+const btnOffsetY = 0.4
 const CarouselContainer = ({ datas }) => {
     const [currentIndex, setCurrentIndex] = useState(Math.floor(datas.length / 2));
 
@@ -21,11 +22,13 @@ const CarouselContainer = ({ datas }) => {
                 datas={datas}
                 cardClickedIndex={currentIndex}
                 onDotClick={handleCardClick}
+                offsetY={btnOffsetY}
             />
             <SliderArrows
                 currentIndex={currentIndex}
                 onBtnClick={handleCardClick}
                 totalSlides={datas.length}
+                offsetY={btnOffsetY}
             />
         </>
     );

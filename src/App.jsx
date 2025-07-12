@@ -72,8 +72,8 @@ export default function App() {
       style={{ height: '100vh', width: '100vw', background: 'linear-gradient(to bottom,rgb(0, 0, 0),rgb(21, 46, 100))' }}
 
       camera={{
-        position: [0, 0, window.innerWidth > 800 ? 5 : 9],
-        fov: 95,
+        position: [0, 0, 4.8],
+        fov: 60,
       }}
 
       onCreated={({ gl, camera, size }) => {

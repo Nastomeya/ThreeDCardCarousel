@@ -1,24 +1,11 @@
 import * as THREE from 'three';
-import { useThree } from '@react-three/fiber';
-import { useCursor } from '@react-three/drei'
-import { useState } from 'react'
+import { useHoverEffect } from './useHoverEffect'
 
 const SliderArrowBtn = ({ id, radius, segments, onClick }) => {
 
     const isRightArrow = id % 2 === 0;
-    const { gl } = useThree();
-    const handlePointerOver = () => {
-        gl.domElement.style.cursor = 'pointer';
-        setHovered(true);
-    };
-    const handlePointerOut = () => {
-        gl.domElement.style.cursor = 'auto';
-        setHovered(false);
-    };
-
+    const hoverEffect = useHoverEffect();
     const hoverStrokeColor = 'red'
-    const [hovered, setHovered] = useState(false)
-    useCursor(hovered, 'pointer', 'auto')
 
     return (
         <group onClick={e => {
@@ -26,12 +13,12 @@ const SliderArrowBtn = ({ id, radius, segments, onClick }) => {
             onClick?.();
         }}>
             <mesh
-                onPointerOver={handlePointerOver}
-                onPointerOut={handlePointerOut}
+                onPointerOver={hoverEffect.handlePointerOver}
+                onPointerOut={hoverEffect.handlePointerOut}
             >
                 <circleGeometry args={[radius, segments]} />
                 <meshLambertMaterial
-                    color={hovered ? hoverStrokeColor : 'white'} // Highlight center dot
+                    color={hoverEffect.isHovered ? hoverStrokeColor : 'white'} // Highlight center dot
                     metalness={0.5}
                     roughness={0.5}
                     side={THREE.DoubleSide} // Ensure circle is visible from both sides

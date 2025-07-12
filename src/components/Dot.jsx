@@ -1,12 +1,11 @@
 import * as THREE from 'three';
-import { useThree } from '@react-three/fiber';
+import { useHoverEffect } from './useHoverEffect'
 
 const Dot = ({ id, currentIndex, radius, segments, onClick }) => {
 
     const isDisplayed = id === currentIndex;
-    const { gl } = useThree();
-    const handlePointerOver = () => { gl.domElement.style.cursor = isDisplayed ? 'auto' : 'pointer'; };
-    const handlePointerOut = () => { gl.domElement.style.cursor = 'auto'; };
+    const hoverEffect = useHoverEffect();
+    const hoverStrokeColor = 'grey'
 
     return (
         <group onClick={e => {
@@ -14,12 +13,12 @@ const Dot = ({ id, currentIndex, radius, segments, onClick }) => {
             onClick?.();
         }}>
             <mesh
-                onPointerOver={handlePointerOver}
-                onPointerOut={handlePointerOut}
+                onPointerOver={hoverEffect.handlePointerOver}
+                onPointerOut={hoverEffect.handlePointerOut}
             >
                 <circleGeometry args={[radius, segments]} />
                 <meshStandardMaterial
-                    color={isDisplayed ? 'white' : '#3f4d6b'} // Highlight center dot
+                    color={isDisplayed ? 'white' : hoverEffect.isHovered ? hoverStrokeColor : '#3f4d6b'} // Highlight center dot
                     metalness={0.5}
                     roughness={0.5}
                     side={THREE.DoubleSide} // Ensure circle is visible from both sides

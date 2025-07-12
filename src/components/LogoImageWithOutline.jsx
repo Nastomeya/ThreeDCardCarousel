@@ -1,19 +1,17 @@
 import { createCircleShape } from './createCircleShape'
 import { useShapeGeometryWithUV } from './useShapeGeometryWithUV'
-import { useMemo, useState } from 'react'
-import { useCursor } from '@react-three/drei'
+import { useHoverEffect } from './useHoverEffect'
+import { useMemo } from 'react'
 import * as THREE from 'three'
 
 export function LogoImageWithOutline({ radius, texture, outter, website, position = [0, 0, 0], strokeColor = 'black', segments = 64 }) {
     const imgShape = useMemo(() => createCircleShape(radius), [])
     const imgShapeWithUV = useShapeGeometryWithUV(imgShape)
-    const ringGeometry = useMemo(
-        () => new THREE.RingGeometry(radius, outter, segments),
-        [radius, outter, segments]
-    )
+    const ringGeometry = useMemo(() => new THREE.RingGeometry(radius, outter, segments), [radius, outter, segments])
+
     const handleClick = () => window.open(website, '_blank', 'noopener,noreferrer');
-    const [hovered, setHovered] = useState(false)
-    useCursor(hovered, 'pointer', 'auto')
+
+    const hoverEffect = useHoverEffect();
     const hoverStrokeColor = 'orange'
 
     return (
@@ -25,11 +23,11 @@ export function LogoImageWithOutline({ radius, texture, outter, website, positio
                 castShadow={true}
                 frustumCulled={false}
                 onClick={handleClick}
-                onPointerOver={() => setHovered(true)}
-                onPointerOut={() => setHovered(false)}
+                onPointerOver={hoverEffect.handlePointerOver}
+                onPointerOut={hoverEffect.handlePointerOut}
             >
-                <meshLambertMaterial map={texture}
-                    emissive={hovered ? hoverStrokeColor : 'black'}
+                <meshLambertMaterial map={texture} 
+                    emissive={hoverEffect.isHovered ? hoverStrokeColor : 'black'}
                 />
             </mesh>
 

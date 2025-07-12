@@ -1,7 +1,71 @@
 import React from 'react'
 import { Canvas } from '@react-three/fiber'
 import { OrthographicCamera, OrbitControls, PerspectiveCamera } from '@react-three/drei'
-import CardSlides from './components/CardSlides'
+import CardCarousel from './components/CardCarousel'
+import DotCarousel from './components/DotCarousel'
+
+
+const cardDatas = [
+  {
+    studioLogo: '/StudioImages/BlindSqurrelGames/Logo.png',
+    website: 'https://blindsquirrelentertainment.com/',
+    gameImage: '/StudioImages/BlindSqurrelGames/GameImage.png',
+    gameTitle: "Number 01 ECT: LEGENDARY EDITION",
+    dateText: "06 Oct 2016"
+  },
+  {
+    studioLogo: '/StudioImages/BlindSqurrelGames/Logo.png',
+    website: 'https://blindsquirrelentertainment.com/',
+    gameImage: '/StudioImages/BlindSqurrelGames/GameImage.png',
+    gameTitle: "Number 02 ECT: LEGENDARY EDITION",
+    dateText: "06 Oct 2013"
+  },
+  {
+    studioLogo: '/StudioImages/BlindSqurrelGames/Logo.png',
+    website: 'https://blindsquirrelentertainment.com/',
+    gameImage: '/StudioImages/BlindSqurrelGames/GameImage.png',
+    gameTitle: "Number 03 ECT: LEGENDARY EDITION",
+    dateText: "06 Oct 2013"
+  },
+  {
+    studioLogo: '/StudioImages/BlindSqurrelGames/Logo.png',
+    website: 'https://blindsquirrelentertainment.com/',
+    gameImage: '/StudioImages/BlindSqurrelGames/GameImage.png',
+    gameTitle: "Number 04 ECT: LEGENDARY EDITION",
+    dateText: "13 May 2025"
+  },
+  {
+    studioLogo: '/StudioImages/BlindSqurrelGames/Logo.png',
+    website: 'https://blindsquirrelentertainment.com/',
+    gameImage: '/StudioImages/BlindSqurrelGames/GameImage.png',
+    gameTitle: "Number 05 ECT: LEGENDARY EDITION",
+    dateText: "06 Oct 2013"
+  },
+  {
+    studioLogo: '/StudioImages/BlindSqurrelGames/Logo.png',
+    website: 'https://blindsquirrelentertainment.com/',
+    gameImage: '/StudioImages/BlindSqurrelGames/GameImage.png',
+    gameTitle: "Number 06 ECT: LEGENDARY EDITION",
+    dateText: "06 Oct 2013"
+  },
+  {
+    studioLogo: '/StudioImages/BlindSqurrelGames/Logo.png',
+    website: 'https://blindsquirrelentertainment.com/',
+    gameImage: '/StudioImages/BlindSqurrelGames/GameImage.png',
+    gameTitle: "Number 07 ECT: LEGENDARY EDITION",
+    dateText: "06 Oct 2013"
+  }
+]
+
+const dotDatas = [
+  { id: 0 },
+  { id: 1 },
+  { id: 2 },
+  { id: 3 },
+  { id: 4 },
+  { id: 5 },
+  { id: 6 },
+];
 
 export default function App() {
   return (
@@ -35,10 +99,11 @@ export default function App() {
       }}
     >
       {/* <OrthographicCamera makeDefault position={[0, 0, 10]} zoom={500} /> */}
-      {/* <OrbitControls enableZoom enablePan enableRotate target={[0, 0, 0]} enableDamping={false} /> */}
+      <OrbitControls enableZoom enablePan enableRotate target={[0, 0, 0]} enableDamping={false} />
       <ambientLight intensity={2} />
       <directionalLight position={[0, 0, 1]} intensity={1} target-position={[0, 0, 0]} />
-      <CardSlides />
+      <CardCarousel cardDatas={cardDatas} />
+      <DotCarousel dotDatas={dotDatas} currentIndex={3} />
     </Canvas>
   )
 }

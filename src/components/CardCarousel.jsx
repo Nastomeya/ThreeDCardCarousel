@@ -3,58 +3,6 @@ import { useTexture } from "@react-three/drei";
 import { useState } from 'react'
 import { useSpring, animated } from '@react-spring/three'
 
-const cards = [
-    {
-        studioLogo: '/StudioImages/BlindSqurrelGames/Logo.png',
-        website: 'https://blindsquirrelentertainment.com/',
-        gameImage: '/StudioImages/BlindSqurrelGames/GameImage.png',
-        gameTitle: "Number 01 ECT: LEGENDARY EDITION",
-        dateText: "06 Oct 2016"
-    },
-    {
-        studioLogo: '/StudioImages/BlindSqurrelGames/Logo.png',
-        website: 'https://blindsquirrelentertainment.com/',
-        gameImage: '/StudioImages/BlindSqurrelGames/GameImage.png',
-        gameTitle: "Number 02 ECT: LEGENDARY EDITION",
-        dateText: "06 Oct 2013"
-    },
-    {
-        studioLogo: '/StudioImages/BlindSqurrelGames/Logo.png',
-        website: 'https://blindsquirrelentertainment.com/',
-        gameImage: '/StudioImages/BlindSqurrelGames/GameImage.png',
-        gameTitle: "Number 03 ECT: LEGENDARY EDITION",
-        dateText: "06 Oct 2013"
-    },
-    {
-        studioLogo: '/StudioImages/BlindSqurrelGames/Logo.png',
-        website: 'https://blindsquirrelentertainment.com/',
-        gameImage: '/StudioImages/BlindSqurrelGames/GameImage.png',
-        gameTitle: "Number 04 ECT: LEGENDARY EDITION",
-        dateText: "13 May 2025"
-    },
-    {
-        studioLogo: '/StudioImages/BlindSqurrelGames/Logo.png',
-        website: 'https://blindsquirrelentertainment.com/',
-        gameImage: '/StudioImages/BlindSqurrelGames/GameImage.png',
-        gameTitle: "Number 05 ECT: LEGENDARY EDITION",
-        dateText: "06 Oct 2013"
-    },
-    {
-        studioLogo: '/StudioImages/BlindSqurrelGames/Logo.png',
-        website: 'https://blindsquirrelentertainment.com/',
-        gameImage: '/StudioImages/BlindSqurrelGames/GameImage.png',
-        gameTitle: "Number 06 ECT: LEGENDARY EDITION",
-        dateText: "06 Oct 2013"
-    },
-    {
-        studioLogo: '/StudioImages/BlindSqurrelGames/Logo.png',
-        website: 'https://blindsquirrelentertainment.com/',
-        gameImage: '/StudioImages/BlindSqurrelGames/GameImage.png',
-        gameTitle: "Number 07 ECT: LEGENDARY EDITION",
-        dateText: "06 Oct 2013"
-    }
-]
-
 // Function to find the shortest path between current and target
 function getShortestPath(_currentIdx, _clickedIdx, totalCount) {
     const normalisedDirect = (_clickedIdx - (_currentIdx) % totalCount) % (totalCount)
@@ -74,17 +22,16 @@ function getShortestPath(_currentIdx, _clickedIdx, totalCount) {
 
 const mod = (n, m) => ((n % m) + m) % m;
 
-
-const CardSlides = () => {
-    const studioLogos = useTexture(cards.map(c => c.studioLogo))
-    const gameImages = useTexture(cards.map(c => c.gameImage))
+const CardCarousel = ({cardDatas}) => {
+    const studioLogos = useTexture(cardDatas.map(c => c.studioLogo))
+    const gameImages = useTexture(cardDatas.map(c => c.gameImage))
 
     const radius = 12
     const angleStep = 0.1 // radians, ~16°//0.13
     const maxAngle = 0.4
     const maxZOffset = 1  // How much the outer cards recede
 
-    const totalCount = cards.length;
+    const totalCount = cardDatas.length;
     const halfCount = totalCount / 2
 
     const [targetCenterIdx, setCenterIdx] = useState(Math.floor(totalCount / 2))
@@ -93,12 +40,9 @@ const CardSlides = () => {
         const _normalizedCenter = ((_center % totalCount) + totalCount) % totalCount;
         let offset = _clickedIdx - _normalizedCenter
         if (offset > halfCount) //3.5
-        {
             offset -= totalCount
-        }
-        else if (offset < -halfCount) {
+        else if (offset < -halfCount)
             offset += totalCount
-        }
         return offset;
     }
     const normalizedCenter = ((targetCenterIdx % totalCount) + totalCount) % totalCount
@@ -121,7 +65,7 @@ const CardSlides = () => {
 
     return (
         <>
-            {cards.map((card, index) => {
+            {cardDatas.map((card, index) => {
                 return (
                     <animated.group
                         key={index}
@@ -170,4 +114,4 @@ const CardSlides = () => {
     )
 }
 
-export default CardSlides
+export default CardCarousel

@@ -16,10 +16,6 @@ const Card = ({ studioLogo, website, gameImage, gameTitle, dateText, position = 
         studioLogo.colorSpace = THREE.SRGBColorSpace
     }, [gameImage, studioLogo])
 
-    // useEffect(() => {
-    //     console.log("isShowTimeCode = " + isShowTimeCode)
-    // }, [isShowTimeCode])
-
     return (
         <group
             position={position}
@@ -49,7 +45,13 @@ const Card = ({ studioLogo, website, gameImage, gameTitle, dateText, position = 
                 gameImage={gameImage}
             />
 
-            {displayCode === 1 && (<><LogoImageWithOutline position={[1, 1.2, distanceFromCard]} radius={logoRadius} texture={studioLogo} website={website} outter={logoRadius + 0.02} /></>)}
+            {displayCode === 1 && (
+                <>
+                    <LogoImageWithOutline
+                        position={[1, 1.2, distanceFromCard]} radius={logoRadius}
+                        texture={studioLogo} website={website} outter={logoRadius + 0.02}
+                    />
+                </>)}
         </group>
     )
 }

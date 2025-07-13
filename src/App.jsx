@@ -61,14 +61,16 @@ const datas = [
     dateText: "06 Oct 2013"
   }
 ]
-
+// Define a target aspect ratio (e.g., 16:10)
+const targetAspect = 2.0125;//1.6
+const widthSize = 100
 export default function App() {
   return (
     <Canvas
       shadows
       dpr={window.devicePixelRatio}
       gl={{ preserveDrawingBuffer: true }}
-      style={{ height: '100vh/ 2.5', width: '100vw', background: 'linear-gradient(to bottom,rgb(0, 0, 0),rgb(21, 46, 100))' }}
+      style={{ height: [100 / targetAspect], width: '100vw', background: 'linear-gradient(to bottom,rgb(0, 0, 0),rgb(21, 46, 100))' }}
 
       camera={{
         position: [0, 0, 4.8],
@@ -76,9 +78,6 @@ export default function App() {
       }}
 
       onCreated={({ gl, camera }) => {
-        // Define a target aspect ratio (e.g., 16:10)
-        const targetAspect = 25 / 10;
-
         // Initial sync
         const w = gl.domElement.clientWidth;
         const h = w / targetAspect; // Calculate height based on width

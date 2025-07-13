@@ -1,6 +1,7 @@
 import { Canvas } from '@react-three/fiber'
 import CarouselContainer from './components/CarouselContainer'
 import { OrthographicCamera, OrbitControls, PerspectiveCamera } from '@react-three/drei'
+import { useEffect, useRef } from 'react'
 
 
 const datas = [
@@ -62,39 +63,66 @@ const datas = [
   }
 ]
 // Define a target aspect ratio (e.g., 16:10)
-const targetAspect = 2.0125;//1.6
-const widthSize = 100
+const targetAspect = 2.0125//1.6//
 export default function App() {
+
+  const canvasRef = useRef()
+  const glRef = useRef()
+  const cameraRef = useRef()
+
+  const handleResize = () => {
+    if (!glRef.current || !cameraRef.current) return
+
+    const viewportHeight = window.innerHeight
+    const viewportWidth = window.innerWidth
+
+    // Calculate dimensions while maintaining aspect ratio
+    let width = Math.min(viewportHeight * targetAspect, viewportWidth)
+    let height = width / targetAspect
+
+    // If calculated height exceeds viewport height, adjust based on height
+    if (height > viewportHeight) {
+      height = viewportHeight
+      width = height * targetAspect
+    }
+
+    glRef.current.setSize(width, height)
+    cameraRef.current.aspect = width / height
+    cameraRef.current.updateProjectionMatrix()
+
+    // Center the canvas horizontally
+    const canvas = glRef.current.domElement
+    canvas.style.width = `${width}px`
+    canvas.style.height = `${height}px`
+  }
+
+  useEffect(() => {// Add resize listener
+    window.addEventListener('resize', handleResize)// Cleanup
+    return () => { window.removeEventListener('resize', handleResize) }
+  }, [])
+
+
   return (
     <Canvas
+      ref={canvasRef}
       shadows
       dpr={window.devicePixelRatio}
       gl={{ preserveDrawingBuffer: true }}
-      style={{ height: [100 / targetAspect], width: '100vw', background: 'linear-gradient(to bottom,rgb(0, 0, 0),rgb(21, 46, 100))' }}
-
+      style={{
+        background: 'linear-gradient(to bottom, rgb(0, 0, 0), rgb(21, 46, 100))',
+        margin: '0 auto',
+        display: 'block'
+      }}
       camera={{
         position: [0, 0, 4.8],
         fov: 60,
       }}
 
       onCreated={({ gl, camera }) => {
-        // Initial sync
-        const w = gl.domElement.clientWidth;
-        const h = w / targetAspect; // Calculate height based on width
-        gl.setSize(w, h);
-        camera.aspect = targetAspect;
-        camera.updateProjectionMatrix()
-
-        // handle future resizes
-        const onResize = () => {
-          const w = gl.domElement.clientWidth
-          const h = w / targetAspect
-          gl.setSize(w, h)
-          camera.aspect = targetAspect
-          camera.updateProjectionMatrix()
-        }
-        window.addEventListener('resize', onResize)
-        return () => window.removeEventListener('resize', onResize)
+        glRef.current = gl
+        cameraRef.current = camera
+        // Initial sizing
+        handleResize()
       }}
     >
       {/* <OrthographicCamera makeDefault position={[0, 0, 10]} zoom={500} /> */}

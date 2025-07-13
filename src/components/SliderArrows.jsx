@@ -10,7 +10,7 @@ const BTN_SETTING = {
     radius: 0.2,//0.1,//
     segments: 32,
     space: 0.5,
-    offsetX: 3.8,
+    offsetX: 3.67,
 };
 const SliderArrows = ({ onBtnClick, currentIndex, totalSlides, offsetY }) => {
     const { getButtonsPosition } = useBottonsPosition(BTN_DATAS.length, BTN_SETTING.space, BTN_SETTING.offsetX, offsetY);

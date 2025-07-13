@@ -1,7 +1,6 @@
-import React from 'react'
 import { Canvas } from '@react-three/fiber'
-import { OrthographicCamera, OrbitControls, PerspectiveCamera } from '@react-three/drei'
 import CarouselContainer from './components/CarouselContainer'
+import { OrthographicCamera, OrbitControls, PerspectiveCamera } from '@react-three/drei'
 
 
 const datas = [
@@ -69,25 +68,30 @@ export default function App() {
       shadows
       dpr={window.devicePixelRatio}
       gl={{ preserveDrawingBuffer: true }}
-      style={{ height: '100vh', width: '100vw', background: 'linear-gradient(to bottom,rgb(0, 0, 0),rgb(21, 46, 100))' }}
+      style={{ height: '100vh/ 2.5', width: '100vw', background: 'linear-gradient(to bottom,rgb(0, 0, 0),rgb(21, 46, 100))' }}
 
       camera={{
         position: [0, 0, 4.8],
         fov: 60,
       }}
 
-      onCreated={({ gl, camera, size }) => {
-        // initial sync
-        gl.setSize(size.width, size.height)
-        camera.aspect = size.width / size.height
+      onCreated={({ gl, camera }) => {
+        // Define a target aspect ratio (e.g., 16:10)
+        const targetAspect = 25 / 10;
+
+        // Initial sync
+        const w = gl.domElement.clientWidth;
+        const h = w / targetAspect; // Calculate height based on width
+        gl.setSize(w, h);
+        camera.aspect = targetAspect;
         camera.updateProjectionMatrix()
 
         // handle future resizes
         const onResize = () => {
           const w = gl.domElement.clientWidth
-          const h = gl.domElement.clientHeight
+          const h = w / targetAspect
           gl.setSize(w, h)
-          camera.aspect = w / h
+          camera.aspect = targetAspect
           camera.updateProjectionMatrix()
         }
         window.addEventListener('resize', onResize)

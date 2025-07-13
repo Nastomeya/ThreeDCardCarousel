@@ -4,7 +4,7 @@ import DotCarousel from './DotCarousel';
 import SliderArrows from './SliderArrows';
 import CarouselText from './CarouselText';
 
-const btnOffsetY = 0.4
+const btnOffsetY = 0.35
 
 const CarouselContainer = ({ datas }) => {
     const [currentIndex, setCurrentIndex] = useState(Math.floor(datas.length / 2));

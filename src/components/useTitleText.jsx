@@ -15,20 +15,18 @@ import { Text } from '@react-three/drei'
  * @param {string} [props.anchorY="top"] - Vertical anchor
  * @param {string} [props.textAlign="left"] - Line alignment ("left", "center", "right", "justify")
  */
-export function CardTitleText({
-    displayCode,
+export function useTitleText({
     color,
-    
-    font = "/Fonts/BebasNeue-Regular.ttf",
-    maxWidth = (displayCode === 1 ? 2 : 3.2),
-    anchorX = (displayCode === 1 ? "left" : "center"),
-    textAlign = (displayCode === 1 ? "left" : "center"),
-    fontSize = (displayCode === 1 ? 0.3 : 0.25),
-
+    font,
+    maxWidth,
+    textAlign,
+    fontSize,
+    anchorX,
+    anchorY,
+    lineHeight,
     position = [0, 0, 0],
     rotation = [0, 0, 0],
-    lineHeight = 1.215,
-    anchorY = "top",
+
     ...rest
 }) {
     return (

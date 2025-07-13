@@ -1,5 +1,5 @@
 import { a, useSpring } from '@react-spring/three'
-import { CardTitleText as BaseCardTitleText } from './CardTitleText'
+import { useTitleText as BaseCardTitleText } from './useTitleText'
 import { useMemo } from 'react';
 import { DISPLAY_MODES } from './DisplayModes'
 
@@ -11,9 +11,19 @@ const SPRING_CONFIG = {
     friction: 120,
     precision: 0.001,
 };
-
+function getTextConfig(displayCode) {
+    return {
+        font: "/Fonts/BebasNeue-Regular.ttf",
+        maxWidth: (displayCode === 1 ? 2 : 3.2),
+        textAlign: (displayCode === 1 ? "left" : "center"),
+        fontSize: (displayCode === 1 ? 0.3 : 0.25),
+        anchorX: (displayCode === 1 ? "left" : "center"),
+        anchorY: "top",
+        lineHeight: 1.215
+    }
+}
 export function AnimatedCardTitleText({ displayCode, distanceFromCard, gameTitle }) {
-
+    const { font, maxWidth, anchorX, textAlign, fontSize, lineHeight, anchorY } = getTextConfig(displayCode)
     // compute target transforms
     const target = useMemo(() => {
         if (!Object.values(DISPLAY_MODES).includes(displayCode)) {
@@ -49,7 +59,13 @@ export function AnimatedCardTitleText({ displayCode, distanceFromCard, gameTitle
 
     return (
         <a.group position={target.position} rotation={target.rotation}>
-            <CardTitleText displayCode={displayCode} color={props.color} >{gameTitle}</CardTitleText>
+            <CardTitleText
+                color={props.color}
+                font={font} maxWidth={maxWidth} anchorX={anchorX}
+                textAlign={textAlign} fontSize={fontSize}
+                lineHeight={lineHeight} anchorY={anchorY} >
+                {gameTitle}
+            </CardTitleText>
         </a.group>
     )
 }

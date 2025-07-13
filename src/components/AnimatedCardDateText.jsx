@@ -1,5 +1,5 @@
 import { a, useSpring } from '@react-spring/three'
-import { CardDateText as BaseCardDateText } from './CardDateText'
+import { useTitleText as BaseCardDateText } from './useTitleText'
 import { useMemo } from 'react';
 import { DISPLAY_MODES } from './DisplayModes'
 
@@ -10,8 +10,23 @@ const SPRING_CONFIG = {
     friction: 120,
     precision: 0.001,
 };
-
+const SIDE_POS_CONFIG = {
+    x: 1.58,
+    y: 1.5,
+}
+function getTextConfig(displayCode) {
+    return {
+        font: "/Fonts/Montserrat-Medium.ttf",
+        maxWidth: 0.7,
+        textAlign: displayCode === 1 ? "right" : "center",
+        fontSize: 0.1,
+        anchorX: "right",
+        anchorY: "top",
+        lineHeight: 1.22,
+    }
+}
 export function AnimatedCardDateText({ displayCode, distanceFromCard, dateText }) {
+    const { font, maxWidth, anchorX, textAlign, fontSize, lineHeight, anchorY } = getTextConfig(displayCode)
 
     // compute target transforms
     const target = useMemo(() => {
@@ -27,13 +42,13 @@ export function AnimatedCardDateText({ displayCode, distanceFromCard, dateText }
                 }
             case DISPLAY_MODES.RIGHT:
                 return {
-                    position: [1.53, -1.5, distanceFromCard],
+                    position: [SIDE_POS_CONFIG.x, -SIDE_POS_CONFIG.y, distanceFromCard],
                     rotation: [0, 0, -Math.PI / 2],
                     color: "#9ca4b2"
                 }
             default:
                 return {
-                    position: [-1.53, 1.5, distanceFromCard],
+                    position: [-SIDE_POS_CONFIG.x, SIDE_POS_CONFIG.y, distanceFromCard],
                     rotation: [0, 0, Math.PI / 2],
                     color: "#9ca4b2"
                 }
@@ -48,7 +63,13 @@ export function AnimatedCardDateText({ displayCode, distanceFromCard, dateText }
 
     return (
         <a.group position={target.position} rotation={target.rotation} >
-            <CardDateText displayCode={displayCode} color={props.color} >{dateText} </CardDateText>
+            <CardDateText
+                color={props.color}
+                font={font} maxWidth={maxWidth} anchorX={anchorX}
+                textAlign={textAlign} fontSize={fontSize}
+                lineHeight={lineHeight} anchorY={anchorY} >
+                {dateText}
+            </CardDateText>
         </a.group>
     )
 }

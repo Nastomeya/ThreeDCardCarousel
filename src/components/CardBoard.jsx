@@ -27,7 +27,7 @@ export function CardBoard({ isShowTime, colors, stops, rotation }) {
 
     const { metalNormalMap, metalBaseMap, metalRoughnessMap, metalnessMap } = useCardTextures()
     const backgroundShape = useMemo(() => createRoundedRectShape(4, 3.4, 0.05), [createRoundedRectShape])
-    const backgroundShapeWithUV = useExtrudeGeometryWithUV(backgroundShape, { depth: 0.05, bevelEnabled: false })
+    const backgroundShapeWithUV = useExtrudeGeometryWithUV(backgroundShape, { steps: 1, depth: 0.05, bevelEnabled: false })
 
     return (
         <mesh position={[0, 0, 0]} geometry={backgroundShapeWithUV} receiveShadow={true} castShadow={true} frustumCulled={false}>

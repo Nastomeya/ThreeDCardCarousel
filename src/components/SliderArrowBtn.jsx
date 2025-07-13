@@ -20,11 +20,6 @@ const SliderArrowBtn = ({ id, radius, segments, onClick }) => {
     const isRightArrow = id % 2 === 1;
     const { arrowBtn, arrowHoverBtn } = useBtnTextures(isRightArrow)
     const { isHovered, handlePointerOver, handlePointerOut } = useHoverEffect()
-
-    const hoverStrokeColor = 'red'
-
-
-
     return (
         <group onClick={e => {
             e.stopPropagation();
@@ -37,7 +32,6 @@ const SliderArrowBtn = ({ id, radius, segments, onClick }) => {
                 <circleGeometry args={[radius, segments]} />
                 <meshLambertMaterial
                     map={isHovered ? arrowHoverBtn : arrowBtn}
-                    // color={isHovered ? hoverStrokeColor : 'white'} // Highlight center dot
                     metalness={0.5}
                     roughness={0.5}
                     side={THREE.DoubleSide} // Ensure circle is visible from both sides

@@ -1,9 +1,9 @@
 import { a, useSpring } from '@react-spring/three'
-import { useTitleText as BaseCardTitleText } from './useTitleText'
+import { useTitleText as BaseText } from './useTitleText'
 import { useMemo } from 'react';
 import { DISPLAY_MODES } from './DisplayModes'
 
-const CardTitleText = a(BaseCardTitleText)
+const CardTitleText = a(BaseText)
 
 const SPRING_CONFIG = {
     mass: 3,

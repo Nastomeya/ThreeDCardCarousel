@@ -67,9 +67,7 @@ const CardCarousel = ({ datas, onCardClick, dotClickedIndex }) => {
         setCenterIdx(shortestIndex);
     }
 
-
     useEffect(() => { makeClickedCardToCentre(dotClickedIndex); }, [dotClickedIndex]);
-
     return (
         <>
             {datas.map((card, index) => {

@@ -1,8 +1,7 @@
 import { Canvas } from '@react-three/fiber'
 import CarouselContainer from './components/CarouselContainer'
 import { OrthographicCamera, OrbitControls, PerspectiveCamera } from '@react-three/drei'
-import { useEffect, useRef } from 'react'
-
+import { useEffect, useRef, useState } from 'react'
 
 const datas = [
   {
@@ -62,13 +61,14 @@ const datas = [
     dateText: "06 Oct 2013"
   }
 ]
+
 // Define a target aspect ratio (e.g., 16:10)
 const targetAspect = 2.0125//1.6//
 export default function App() {
-
   const canvasRef = useRef()
   const glRef = useRef()
   const cameraRef = useRef()
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true)
 
   const handleResize = () => {
     if (!glRef.current || !cameraRef.current) return
@@ -94,6 +94,14 @@ export default function App() {
     const canvas = glRef.current.domElement
     canvas.style.width = `${width}px`
     canvas.style.height = `${height}px`
+
+    // Communicate height to parent window (for iframe)
+    if (window.parent && window.parent !== window) {
+      window.parent.postMessage({
+        type: 'iframe-resize',
+        height: height
+      }, '*')
+    }
   }
 
   useEffect(() => {// Add resize listener
@@ -101,35 +109,44 @@ export default function App() {
     return () => { window.removeEventListener('resize', handleResize) }
   }, [])
 
+  // Handle autoplay pause/resume
+  const handleMouseEnter = () => setIsAutoPlaying(false)
+  const handleMouseLeave = () => setIsAutoPlaying(true)
 
   return (
-    <Canvas
-      ref={canvasRef}
-      shadows
-      dpr={window.devicePixelRatio}
-      gl={{ preserveDrawingBuffer: true }}
-      style={{
-        background: 'linear-gradient(to bottom, rgb(0, 0, 0), rgb(21, 46, 100))',
-        margin: '0 auto',
-        display: 'block'
-      }}
-      camera={{
-        position: [0, 0, 4.8],
-        fov: 60,
-      }}
-
-      onCreated={({ gl, camera }) => {
-        glRef.current = gl
-        cameraRef.current = camera
-        // Initial sizing
-        handleResize()
-      }}
+    <div
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      style={{ width: '100%', height: '100vh' }}
     >
-      {/* <OrthographicCamera makeDefault position={[0, 0, 10]} zoom={500} /> */}
-      {/* <OrbitControls enableZoom enablePan enableRotate target={[0, 0, 0]} enableDamping={false} /> */}
-      <ambientLight intensity={4} />
-      <directionalLight position={[0, 0, 1]} intensity={1} target-position={[0, 0, 0]} />
-      <CarouselContainer datas={datas} />
-    </Canvas>
+      <Canvas
+        ref={canvasRef}
+        shadows
+        dpr={window.devicePixelRatio}
+        gl={{ preserveDrawingBuffer: true }}
+        style={{
+          background: 'linear-gradient(to bottom, rgb(0, 0, 0), rgb(21, 46, 100))',
+          margin: '0 auto',
+          display: 'block'
+        }}
+        camera={{
+          position: [0, 0, 4.8],
+          fov: 60,
+        }}
+
+        onCreated={({ gl, camera }) => {
+          glRef.current = gl
+          cameraRef.current = camera
+          // Initial sizing
+          handleResize()
+        }}
+      >
+        {/* <OrthographicCamera makeDefault position={[0, 0, 10]} zoom={500} /> */}
+        {/* <OrbitControls enableZoom enablePan enableRotate target={[0, 0, 0]} enableDamping={false} /> */}
+        <ambientLight intensity={4} />
+        <directionalLight position={[0, 0, 1]} intensity={1} target-position={[0, 0, 0]} />
+        <CarouselContainer datas={datas} isAutoPlaying={isAutoPlaying} />
+      </Canvas>
+    </div>
   )
 }

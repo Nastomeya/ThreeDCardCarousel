@@ -12,8 +12,8 @@ const BTN_SETTING = {
     space: 0.5,
     offsetX: 3.67,
 };
-const SliderArrows = ({ onBtnClick, currentIndex, totalSlides, offsetY }) => {
-    const { getButtonsPosition } = useBottonsPosition(BTN_DATAS.length, BTN_SETTING.space, BTN_SETTING.offsetX, offsetY);
+const SliderArrows = ({ onBtnClick, currentIndex, totalSlides, offsetX = 0, offsetY, offsetZ }) => {
+    const { getButtonsPosition } = useBottonsPosition(BTN_DATAS.length, BTN_SETTING.space, offsetX == 0 ? BTN_SETTING.offsetX : offsetX, offsetY, offsetZ);
     return (
         <>
             {BTN_DATAS.map((btn) => {

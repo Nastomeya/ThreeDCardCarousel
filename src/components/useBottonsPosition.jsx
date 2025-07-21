@@ -1,6 +1,6 @@
 import { useThree } from '@react-three/fiber'
 
-export function useBottonsPosition(totalCount, space, offsetX = 0, offsetY = 0) {
+export function useBottonsPosition(totalCount, space, offsetX = 0, offsetY = 0, offsetZ = 0) {
     const { camera } = useThree();
 
     // Calculate the bottom edge of the viewport in world coordinates
@@ -12,7 +12,7 @@ export function useBottonsPosition(totalCount, space, offsetX = 0, offsetY = 0) 
     const getButtonsPosition = (index) => {
         const totalWidth = (totalCount - 1) * space
         const x = index * space - totalWidth / 2 + offsetX; // Center the dots by offsetting        return [x, 0, 0]
-        return [x, bottomY, 0]; // x: centered, y: bottom, z: 0
+        return [x, bottomY, offsetZ]; // x: centered, y: bottom, z: 0
     }
     return { getButtonsPosition }
 }

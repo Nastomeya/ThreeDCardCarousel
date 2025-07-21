@@ -5,10 +5,12 @@ import SliderArrows from './SliderArrows';
 import CarouselText from './CarouselText';
 
 const btnOffsetY = 0.35
+const btnOffsetZ = 0.1
+const arrBtnOffsetX = 1.65
 const autoplayDelay = 6500; // Seconds between slides
 const resumeDelay = 1000;// Resume autoplay after 1 seconds of inactivity
 
-const CarouselContainer = ({ datas, isAutoPlaying = true }) => {
+const CarouselContainer = ({ datas, isAutoPlaying = true, isMobile = false }) => {
     const [currentIndex, setCurrentIndex] = useState(Math.floor(datas.length / 2));
     const [autoPlayActive, setAutoPlayActive] = useState(isAutoPlaying);
 
@@ -49,12 +51,15 @@ const CarouselContainer = ({ datas, isAutoPlaying = true }) => {
                 cardClickedIndex={currentIndex}
                 onDotClick={handleCardClick}
                 offsetY={btnOffsetY}
+                offsetZ={btnOffsetZ}
             />
             <SliderArrows
                 currentIndex={currentIndex}
                 onBtnClick={handleCardClick}
                 totalSlides={datas.length}
+                offsetX={isMobile ? arrBtnOffsetX : 0}
                 offsetY={btnOffsetY}
+                offsetZ={btnOffsetZ}
             />
         </>
     );

@@ -9,12 +9,12 @@ const DOT_SETTING = {
     space: 0.175//0.5,//
 };
 
-const DotCarousel = ({ datas, onDotClick, cardClickedIndex, offsetY }) => {
+const DotCarousel = ({ datas, onDotClick, cardClickedIndex, offsetY, offsetZ }) => {
     const totalCount = datas.length;
     if (totalCount === 0) {
         return <group />;
     }
-    const { getButtonsPosition } = useBottonsPosition(totalCount, DOT_SETTING.space, 0, offsetY);
+    const { getButtonsPosition } = useBottonsPosition(totalCount, DOT_SETTING.space, 0, offsetY, offsetZ);
     return (
         <>
             {datas.map((dot) => {

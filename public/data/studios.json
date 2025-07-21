@@ -1,0 +1,58 @@
+[
+  {
+    "id": 0,
+    "studioLogo": "/StudioImages/BlindSqurrelGames/Logo.png",
+    "website": "https://blindsquirrelentertainment.com/",
+    "gameImage": "/StudioImages/BlindSqurrelGames/GameImage.png",
+    "gameTitle": "Number 01 ECT: LEGENDARY EDITION",
+    "dateText": "06 Oct 2016"
+  },
+  {
+    "id": 1,
+    "studioLogo": "/StudioImages/BlindSqurrelGames/Logo.png",
+    "website": "https://blindsquirrelentertainment.com/",
+    "gameImage": "/StudioImages/BlindSqurrelGames/GameImage.png",
+    "gameTitle": "Number 02 ECT: LEGENDARY EDITION",
+    "dateText": "06 Oct 2013"
+  },
+  {
+    "id": 2,
+    "studioLogo": "/StudioImages/BlindSqurrelGames/Logo.png",
+    "website": "https://blindsquirrelentertainment.com/",
+    "gameImage": "/StudioImages/BlindSqurrelGames/GameImage.png",
+    "gameTitle": "Number 03 ECT: LEGENDARY EDITION",
+    "dateText": "06 Oct 2013"
+  },
+  {
+    "id": 3,
+    "studioLogo": "/StudioImages/BlindSqurrelGames/Logo.png",
+    "website": "https://blindsquirrelentertainment.com/",
+    "gameImage": "/StudioImages/BlindSqurrelGames/GameImage.png",
+    "gameTitle": "Number 04: LEGENDARY EDITION",
+    "dateText": "13 May 2025"
+  },
+  {
+    "id": 4,
+    "studioLogo": "/StudioImages/BlindSqurrelGames/Logo.png",
+    "website": "https://blindsquirrelentertainment.com/",
+    "gameImage": "/StudioImages/BlindSqurrelGames/GameImage.png",
+    "gameTitle": "Number 05 ECT: LEGENDARY EDITION",
+    "dateText": "06 Oct 2013"
+  },
+  {
+    "id": 5,
+    "studioLogo": "/StudioImages/BlindSqurrelGames/Logo.png",
+    "website": "https://blindsquirrelentertainment.com/",
+    "gameImage": "/StudioImages/BlindSqurrelGames/GameImage.png",
+    "gameTitle": "Number 06 ECT: LEGENDARY EDITION",
+    "dateText": "06 Oct 2013"
+  },
+  {
+    "id": 6,
+    "studioLogo": "/StudioImages/BlindSqurrelGames/Logo.png",
+    "website": "https://blindsquirrelentertainment.com/",
+    "gameImage": "/StudioImages/BlindSqurrelGames/GameImage.png",
+    "gameTitle": "Number 07 ECT: LEGENDARY EDITION",
+    "dateText": "06 Oct 2013"
+  }
+]

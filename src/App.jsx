@@ -3,65 +3,6 @@ import CarouselContainer from './components/CarouselContainer'
 import { OrthographicCamera, OrbitControls, PerspectiveCamera } from '@react-three/drei'
 import { useEffect, useRef, useState } from 'react'
 
-const datas = [
-  {
-    id: 0,
-    studioLogo: '/StudioImages/BlindSqurrelGames/Logo.png',
-    website: 'https://blindsquirrelentertainment.com/',
-    gameImage: '/StudioImages/BlindSqurrelGames/GameImage.png',
-    gameTitle: "Number 01 ECT: LEGENDARY EDITION",
-    dateText: "06 Oct 2016"
-  },
-  {
-    id: 1,
-    studioLogo: '/StudioImages/BlindSqurrelGames/Logo.png',
-    website: 'https://blindsquirrelentertainment.com/',
-    gameImage: '/StudioImages/BlindSqurrelGames/GameImage.png',
-    gameTitle: "Number 02 ECT: LEGENDARY EDITION",
-    dateText: "06 Oct 2013"
-  },
-  {
-    id: 2,
-    studioLogo: '/StudioImages/BlindSqurrelGames/Logo.png',
-    website: 'https://blindsquirrelentertainment.com/',
-    gameImage: '/StudioImages/BlindSqurrelGames/GameImage.png',
-    gameTitle: "Number 03 ECT: LEGENDARY EDITION",
-    dateText: "06 Oct 2013"
-  },
-  {
-    id: 3,
-    studioLogo: '/StudioImages/BlindSqurrelGames/Logo.png',
-    website: 'https://blindsquirrelentertainment.com/',
-    gameImage: '/StudioImages/BlindSqurrelGames/GameImage.png',
-    gameTitle: "Number 04 ECT: LEGENDARY EDITION",
-    dateText: "13 May 2025"
-  },
-  {
-    id: 4,
-    studioLogo: '/StudioImages/BlindSqurrelGames/Logo.png',
-    website: 'https://blindsquirrelentertainment.com/',
-    gameImage: '/StudioImages/BlindSqurrelGames/GameImage.png',
-    gameTitle: "Number 05 ECT: LEGENDARY EDITION",
-    dateText: "06 Oct 2013"
-  },
-  {
-    id: 5,
-    studioLogo: '/StudioImages/BlindSqurrelGames/Logo.png',
-    website: 'https://blindsquirrelentertainment.com/',
-    gameImage: '/StudioImages/BlindSqurrelGames/GameImage.png',
-    gameTitle: "Number 06 ECT: LEGENDARY EDITION",
-    dateText: "06 Oct 2013"
-  },
-  {
-    id: 6,
-    studioLogo: '/StudioImages/BlindSqurrelGames/Logo.png',
-    website: 'https://blindsquirrelentertainment.com/',
-    gameImage: '/StudioImages/BlindSqurrelGames/GameImage.png',
-    gameTitle: "Number 07 ECT: LEGENDARY EDITION",
-    dateText: "06 Oct 2013"
-  }
-]
-
 // Define a target aspect ratio (e.g., 16:10)
 const targetAspect = 2.0125//1.6//
 export default function App() {
@@ -69,6 +10,7 @@ export default function App() {
   const glRef = useRef()
   const cameraRef = useRef()
   const [isAutoPlaying, setIsAutoPlaying] = useState(true)
+  const [studios, setStudios] = useState([]);
 
   const handleResize = () => {
     if (!glRef.current || !cameraRef.current) return
@@ -104,10 +46,53 @@ export default function App() {
     }
   }
 
+  // const handleResize = () => {
+  //   if (!glRef.current || !cameraRef.current) return
+
+  //   // const viewportHeight = window.innerHeight
+  //   // const viewportWidth = window.innerWidth
+
+  //   // // Calculate dimensions while maintaining aspect ratio
+  //   // let width = Math.min(viewportHeight * targetAspect, viewportWidth)
+  //   // let height = width / targetAspect
+
+  //   // // If calculated height exceeds viewport height, adjust based on height
+  //   // if (height > viewportHeight) {
+  //   //   height = viewportHeight
+  //   //   width = height * targetAspect
+  //   // }
+  //   const width = window.innerWidth;
+  //   const height = window.innerHeight;
+  //   glRef.current.setSize(width, height)
+  //   cameraRef.current.aspect = width / height
+  //   cameraRef.current.updateProjectionMatrix()
+
+  //   // // Center the canvas horizontally
+  //   // const canvas = glRef.current.domElement
+  //   // canvas.style.width = `${width}px`
+  //   // canvas.style.height = `${height}px`
+
+  //   // Communicate height to parent window (for iframe)
+  //   // if (window.parent && window.parent !== window) {
+  //   //   window.parent.postMessage({
+  //   //     type: 'iframe-resize',
+  //   //     height: height
+  //   //   }, '*')
+  //   // }
+  // }
+
+
   useEffect(() => {// Add resize listener
     window.addEventListener('resize', handleResize)// Cleanup
     return () => { window.removeEventListener('resize', handleResize) }
   }, [])
+
+  useEffect(() => {
+    fetch('/data/studios.json')
+      .then((res) => res.json())
+      .then((data) => setStudios(data))
+      .catch((error) => console.error('Error fetching studios:', error));
+  }, []);
 
   // Handle autoplay pause/resume
   const handleMouseEnter = () => setIsAutoPlaying(false)
@@ -117,7 +102,7 @@ export default function App() {
     <div
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      style={{ width: '100%', height: '100vh' }}
+      // style={{ width: '100%', height: '100vh' }}
     >
       <Canvas
         ref={canvasRef}
@@ -145,7 +130,7 @@ export default function App() {
         {/* <OrbitControls enableZoom enablePan enableRotate target={[0, 0, 0]} enableDamping={false} /> */}
         <ambientLight intensity={4} />
         <directionalLight position={[0, 0, 1]} intensity={1} target-position={[0, 0, 0]} />
-        <CarouselContainer datas={datas} isAutoPlaying={isAutoPlaying} />
+        <CarouselContainer datas={studios} isAutoPlaying={isAutoPlaying} />
       </Canvas>
     </div>
   )

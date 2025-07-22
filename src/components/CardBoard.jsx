@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import { useMemo } from 'react'
+import { useMemo, useEffect } from 'react'
 import { createRoundedRectShape } from './createRoundedRectShape'
 import { useExtrudeGeometryWithUV } from './useExtrudeGeometryWithUV'
 import { GradientTexture } from '@react-three/drei'
@@ -8,11 +8,6 @@ import { useLoader } from '@react-three/fiber'
 
 // Preload textures
 const cardFolderName = "/CardTextures";
-useLoader.preload(THREE.TextureLoader, cardFolderName + '/BrushedIron1K_Normal.png');
-useLoader.preload(THREE.TextureLoader, cardFolderName + '/BrushedIron1K_BaseColor.png');
-useLoader.preload(THREE.TextureLoader, cardFolderName + '/BrushedIron1K_Roughness.png');
-useLoader.preload(THREE.TextureLoader, cardFolderName + '/BrushedIron1K_Metallic.png');
-
 // Custom hook for texture loading
 function useCardTextures() {
     const metalNormalMap = useLoader(THREE.TextureLoader, cardFolderName + '/BrushedIron1K_Normal.png')
@@ -24,6 +19,13 @@ function useCardTextures() {
 }
 
 export function CardBoard({ isShowTime, colors, stops, rotation }) {
+
+    useEffect(() => {
+        useLoader.preload(THREE.TextureLoader, cardFolderName + '/BrushedIron1K_Normal.png');
+        useLoader.preload(THREE.TextureLoader, cardFolderName + '/BrushedIron1K_BaseColor.png');
+        useLoader.preload(THREE.TextureLoader, cardFolderName + '/BrushedIron1K_Roughness.png');
+        useLoader.preload(THREE.TextureLoader, cardFolderName + '/BrushedIron1K_Metallic.png');
+    }, []);
 
     const { metalNormalMap, metalBaseMap, metalRoughnessMap, metalnessMap } = useCardTextures()
     const backgroundShape = useMemo(() => createRoundedRectShape(4, 3.4, 0.05), [createRoundedRectShape])

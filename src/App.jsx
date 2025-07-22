@@ -15,9 +15,9 @@ export default function App() {
   const handleResize = () => {
     if (!glRef.current || !cameraRef.current) return
 
-    // const isMobile = window.innerWidth < 768;
-    updateWindowSize(window.innerWidth < 768);
-    const targetAspect = isMobile ? 0.85 : 2.0125//
+    const isNowMobile = window.innerWidth < 768;
+    updateWindowSize(isNowMobile);
+    const targetAspect = isNowMobile ? 0.85 : 2.0125//
 
     const viewportHeight = window.innerHeight
     const viewportWidth = window.innerWidth

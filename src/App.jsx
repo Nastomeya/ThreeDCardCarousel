@@ -3,8 +3,6 @@ import CarouselContainer from './components/CarouselContainer'
 import { OrthographicCamera, OrbitControls, PerspectiveCamera } from '@react-three/drei'
 import { useEffect, useRef, useState } from 'react'
 
-
-
 const datas = [
   {
     id: 0,
@@ -74,7 +72,7 @@ export default function App() {
   const glRef = useRef()
   const cameraRef = useRef()
   const [isAutoPlaying, setIsAutoPlaying] = useState(true)
-  const [studios, setStudios] = useState([]);
+  const [studios, setStudios] = useState(null);
   const [isMobile, updateWindowSize] = useState(window.innerWidth < 768);
 
   const handleResize = () => {
@@ -115,11 +113,25 @@ export default function App() {
     }
   }
 
+  // useEffect(() => {
+  //   fetch('/data/studios.json?nocache=${Date.now()}')
+  //     .then((res) => res.json())
+  //     .then((data) => setStudios(data))
+  //     .catch((error) => console.error('Error fetching studios:', error));
+  // }, []);
+
+
   useEffect(() => {
     fetch('/data/studios.json')
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) throw new Error('Failed to fetch JSON');
+        return res.json();
+      })
       .then((data) => setStudios(data))
-      .catch((error) => console.error('Error fetching studios:', error));
+      .catch((err) => {
+        console.error('Error loading studios data:', err);
+        setStudios([]); // fallback to empty if error
+      });
   }, []);
 
   useEffect(() => {// Add resize listener
@@ -127,6 +139,9 @@ export default function App() {
     return () => { window.removeEventListener('resize', handleResize) }
   }, [])
 
+  if (studios === null) {
+    return <div>Loading...</div>; // or your fancy loader
+  }
 
   // Handle autoplay pause/resume
   const handleMouseEnter = () => setIsAutoPlaying(false)
@@ -163,8 +178,7 @@ export default function App() {
         {/* <OrbitControls enableZoom enablePan enableRotate target={[0, 0, 0]} enableDamping={false} /> */}
         <ambientLight intensity={4} />
         <directionalLight position={[0, 0, 1]} intensity={1} target-position={[0, 0, 0]} />
-        {/* <CarouselContainer datas={studios} isAutoPlaying={isAutoPlaying} isMobile={isMobile} /> */}
-        <CarouselContainer datas={datas} isAutoPlaying={isAutoPlaying} isMobile={isMobile} />
+        <CarouselContainer datas={studios} isAutoPlaying={isAutoPlaying} isMobile={isMobile} />
       </Canvas>
     </div>
   )

@@ -3,6 +3,71 @@ import CarouselContainer from './components/CarouselContainer'
 import { OrthographicCamera, OrbitControls, PerspectiveCamera } from '@react-three/drei'
 import { useEffect, useRef, useState } from 'react'
 
+
+
+const datas = [
+  {
+    id: 0,
+    studioLogo: '/StudioImages/BlindSqurrelGames/Logo.jpg',
+    website: 'https://blindsquirrelentertainment.com/',
+    gameImage: '/StudioImages/BlindSqurrelGames/GameImage.jpg',
+    gameTitle: "Number 01 ECT: LEGENDARY EDITION",
+    dateText: "06 Oct 2016"
+  },
+  {
+    id: 1,
+    studioLogo: '/StudioImages/BlindSqurrelGames/Logo.jpg',
+    website: 'https://blindsquirrelentertainment.com/',
+    gameImage: '/StudioImages/BlindSqurrelGames/GameImage.jpg',
+    gameTitle: "Number 02 ECT: LEGENDARY EDITION",
+    dateText: "06 Oct 2013"
+  },
+  {
+    id: 2,
+    studioLogo: '/StudioImages/BlindSqurrelGames/Logo.jpg',
+    website: 'https://blindsquirrelentertainment.com/',
+    gameImage: '/StudioImages/BlindSqurrelGames/GameImage.jpg',
+    gameTitle: "Number 03 ECT: LEGENDARY EDITION",
+    dateText: "06 Oct 2013"
+  },
+  {
+    id: 3,
+    studioLogo: '/StudioImages/BlindSqurrelGames/Logo.jpg',
+    website: 'https://blindsquirrelentertainment.com/',
+    gameImage: '/StudioImages/BlindSqurrelGames/GameImage.jpg',
+    gameTitle: "Number 04 ECT: LEGENDARY EDITION",
+    dateText: "13 May 2025"
+  },
+  {
+    id: 4,
+    studioLogo: '/StudioImages/BlindSqurrelGames/Logo.jpg',
+    website: 'https://blindsquirrelentertainment.com/',
+    gameImage: '/StudioImages/BlindSqurrelGames/GameImage.jpg',
+    gameTitle: "Number 05 ECT: LEGENDARY EDITION",
+    dateText: "06 Oct 2013"
+  },
+  {
+    id: 5,
+    studioLogo: '/StudioImages/BlindSqurrelGames/Logo.jpg',
+    website: 'https://blindsquirrelentertainment.com/',
+    gameImage: '/StudioImages/BlindSqurrelGames/GameImage.jpg',
+    gameTitle: "Number 06 ECT: LEGENDARY EDITION",
+    dateText: "06 Oct 2013"
+  },
+  {
+    id: 6,
+    studioLogo: '/StudioImages/BlindSqurrelGames/Logo.jpg',
+    website: 'https://blindsquirrelentertainment.com/',
+    gameImage: '/StudioImages/BlindSqurrelGames/GameImage.jpg',
+    gameTitle: "Number 07 ECT: LEGENDARY EDITION",
+    dateText: "06 Oct 2013"
+  }
+]
+
+
+
+
+
 // const targetAspect = 1.6//2.0125//
 export default function App() {
   const canvasRef = useRef()
@@ -50,17 +115,18 @@ export default function App() {
     }
   }
 
-  useEffect(() => {// Add resize listener
-    window.addEventListener('resize', handleResize)// Cleanup
-    return () => { window.removeEventListener('resize', handleResize) }
-  }, [])
-
   useEffect(() => {
     fetch('/data/studios.json')
       .then((res) => res.json())
       .then((data) => setStudios(data))
       .catch((error) => console.error('Error fetching studios:', error));
   }, []);
+
+  useEffect(() => {// Add resize listener
+    window.addEventListener('resize', handleResize)// Cleanup
+    return () => { window.removeEventListener('resize', handleResize) }
+  }, [])
+
 
   // Handle autoplay pause/resume
   const handleMouseEnter = () => setIsAutoPlaying(false)
@@ -97,7 +163,8 @@ export default function App() {
         {/* <OrbitControls enableZoom enablePan enableRotate target={[0, 0, 0]} enableDamping={false} /> */}
         <ambientLight intensity={4} />
         <directionalLight position={[0, 0, 1]} intensity={1} target-position={[0, 0, 0]} />
-        <CarouselContainer datas={studios} isAutoPlaying={isAutoPlaying} isMobile={isMobile} />
+        {/* <CarouselContainer datas={studios} isAutoPlaying={isAutoPlaying} isMobile={isMobile} /> */}
+        <CarouselContainer datas={datas} isAutoPlaying={isAutoPlaying} isMobile={isMobile} />
       </Canvas>
     </div>
   )

@@ -6,7 +6,7 @@ import * as THREE from 'three'
 
 export function LogoImageWithOutline({ radius, texture, outter, website, position = [0, 0, 0], strokeColor = 'black', segments = 64 }) {
     const imgShape = useMemo(() => createCircleShape(radius), [])
-    const imgShapeWithUV = useShapeGeometryWithUV(imgShape)
+    const imgShapeWithUV = useShapeGeometryWithUV(imgShape, 32)
     const ringGeometry = useMemo(() => new THREE.RingGeometry(radius, outter, segments), [radius, outter, segments])
 
     const handleClick = () => window.open(website, '_blank', 'noopener,noreferrer');

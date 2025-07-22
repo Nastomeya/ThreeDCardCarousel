@@ -1,9 +1,9 @@
 import { useMemo } from 'react'
 import * as THREE from 'three'
 
-export function useShapeGeometryWithUV(shape) {
+export function useShapeGeometryWithUV(shape, segments = 12) {
     return useMemo(() => {
-        const geometry = new THREE.ShapeGeometry(shape)
+        const geometry = new THREE.ShapeGeometry(shape, segments)
 
         // Compute bounding box for normalization
         geometry.computeBoundingBox()

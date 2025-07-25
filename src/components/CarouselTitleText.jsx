@@ -1,12 +1,13 @@
 
 import { TitleText } from './useTitleText'
+import bebasNeueFont from '../assets/fonts/BebasNeue-Regular.ttf';
 
 function getTextConfig(displayCode) {
     return {
         position: [0, 0, 0],
         rotation: [0, 0, 0],
         color: "white",
-        font: "/Fonts/BebasNeue-Regular.ttf",
+        font: bebasNeueFont,
         maxWidth: (displayCode === 1 ? 2 : 3.2),
         textAlign: (displayCode === 1 ? "left" : "center"),
         fontSize: (displayCode === 1 ? 0.3 : 0.25),

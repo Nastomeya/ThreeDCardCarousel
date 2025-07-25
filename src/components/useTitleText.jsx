@@ -5,7 +5,7 @@ import { Text } from '@react-three/drei'
  *
  * @param {object} props
  * @param {string} props.children - The text to display
- * @param {string} [props.font="/Fonts/BebasNeue-Regular.ttf"] - Path to font file
+ * @param {string} [props.font="../assets/fonts/BebasNeue-Regular.ttf"] - Path to font file
  * @param {number} [props.fontSize=0.25] - Text size in scene units
  * @param {string} [props.color="#11234A"] - Text color
  * @param {Array} [props.position=[0, 0, 0]] - Scene position [x, y, z]

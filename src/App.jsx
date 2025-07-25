@@ -51,7 +51,7 @@ export default function App() {
   }
 
   useEffect(() => {
-    fetch('/data/studios.json')
+    fetch('/api-data/datas.json')
       .then((res) => {
         if (!res.ok) throw new Error('Failed to fetch JSON');
         return res.json();

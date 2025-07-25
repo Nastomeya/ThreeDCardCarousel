@@ -2,6 +2,7 @@ import { a, useSpring } from '@react-spring/three'
 import { useTitleText as BaseText } from './useTitleText'
 import { useMemo } from 'react';
 import { DISPLAY_MODES } from './DisplayModes'
+import montserratFont from '../assets/fonts/subset-Montserrat-Medium.ttf';
 
 const CardDateText = a(BaseText)
 const SPRING_CONFIG = {
@@ -16,7 +17,7 @@ const SIDE_POS_CONFIG = {
 }
 function getTextConfig(displayCode) {
     return {
-        font: "/Fonts/Montserrat-Medium.ttf",
+        font: montserratFont,
         maxWidth: 0.7,
         textAlign: displayCode === 1 ? "right" : "center",
         fontSize: 0.1,
@@ -25,7 +26,7 @@ function getTextConfig(displayCode) {
         lineHeight: 1.22,
     }
 }
-export function AnimatedCardDateText({ displayCode, distanceFromCard, dateText }) {
+export function AnimatedCardDateText({ displayCode, distanceFromCard, date }) {
     const { font, maxWidth, anchorX, textAlign, fontSize, lineHeight, anchorY } = getTextConfig(displayCode)
 
     // compute target transforms
@@ -68,7 +69,7 @@ export function AnimatedCardDateText({ displayCode, distanceFromCard, dateText }
                 font={font} maxWidth={maxWidth} anchorX={anchorX}
                 textAlign={textAlign} fontSize={fontSize}
                 lineHeight={lineHeight} anchorY={anchorY} >
-                {dateText}
+                {date}
             </CardDateText>
         </a.group>
     )

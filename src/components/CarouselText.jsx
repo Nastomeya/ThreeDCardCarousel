@@ -1,11 +1,29 @@
 import { useTitleText as BaseText } from './useTitleText';
 import { a } from '@react-spring/three'
+import montserratFont from '../assets/fonts/subset-Montserrat-Bold.ttf';
+import { useEffect, useState } from 'react'
 
 const TitleText = a(BaseText)
-const titleText = "Feature Studios And Games"
-function getTextConfig() {
-    return {
-        font: "/Fonts/Montserrat-Bold.ttf",
+
+const CarouselText = ({ }) => {
+
+    const [title, setTitle] = useState("");
+
+    useEffect(() => {
+        fetch('/api-data/siteInfo.json')
+            .then((res) => {
+                if (!res.ok) throw new Error('Failed to fetch JSON');
+                return res.json();
+            })
+            .then((data) => setTitle(data.title))
+            .catch((err) => {
+                console.error('Error loading studios data:', err);
+                setTitle(""); // fallback to empty if error
+            });
+    }, []);
+
+    const textConfig = {
+        font: montserratFont,
         maxWidth: 5,
         textAlign: "center",
         fontSize: 0.235,
@@ -14,18 +32,21 @@ function getTextConfig() {
         lineHeight: 1.22,
         position: [0, 2.55, 0],
         color: "white"
-    }
-}
-const CarouselText = ({ }) => {
-    const { color, position, font, maxWidth, anchorX, textAlign, fontSize, lineHeight, anchorY } = getTextConfig()
+    };
+
     return (
         <TitleText
-            color={color}
-            font={font} maxWidth={maxWidth} anchorX={anchorX}
-            textAlign={textAlign} fontSize={fontSize}
-            lineHeight={lineHeight} anchorY={anchorY}
-            position={position}>
-            {titleText}
+            font={textConfig.font}
+            maxWidth={textConfig.maxWidth}
+            textAlign={textConfig.textAlign}
+            fontSize={textConfig.fontSize}
+            anchorX={textConfig.anchorX}
+            anchorY={textConfig.anchorY}
+            lineHeight={textConfig.lineHeight}
+            position={textConfig.position}
+            color={textConfig.color}
+        >
+            {title}
         </TitleText>
     );
 }

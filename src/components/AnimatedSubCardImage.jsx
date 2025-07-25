@@ -11,7 +11,7 @@ const SPRING_CONFIG = {
     precision: 0.001,
 };
 
-export function AnimatedSubCardImage({ displayCode, position = [0, 0, 0], gameImage }) {
+export function AnimatedSubCardImage({ displayCode, position = [0, 0, 0], image }) {
 
     const isCentre = displayCode === DISPLAY_MODES.CENTRE
     // animate only opacity
@@ -24,7 +24,7 @@ export function AnimatedSubCardImage({ displayCode, position = [0, 0, 0], gameIm
         <a.group position={position} >
             <SubCardImage
                 // always pass the same texture instance
-                texture={gameImage}
+                texture={image}
                 // these are plain numbers, not [number]!
                 width={2.8}
                 height={2}

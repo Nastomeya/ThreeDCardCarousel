@@ -4,16 +4,19 @@ import { createRoundedRectShape } from './createRoundedRectShape'
 import { useExtrudeGeometryWithUV } from './useExtrudeGeometryWithUV'
 import { GradientTexture } from '@react-three/drei'
 import { useLoader } from '@react-three/fiber'
-
+import metalNormalPath from "../assets/images/cardTextures/BrushedIron1K_Normal.png";
+import metalBasePath from "../assets/images/cardTextures/BrushedIron1K_BaseColor.png";
+import metalRoughnessPath from "../assets/images/cardTextures/BrushedIron1K_Roughness.png";
+import metalnessPath from "../assets/images/cardTextures/BrushedIron1K_Metallic.png";
 
 // Preload textures
 const cardFolderName = "/CardTextures";
 // Custom hook for texture loading
 function useCardTextures() {
-    const metalNormalMap = useLoader(THREE.TextureLoader, cardFolderName + '/BrushedIron1K_Normal.png')
-    const metalBaseMap = useLoader(THREE.TextureLoader, cardFolderName + '/BrushedIron1K_BaseColor.png')
-    const metalRoughnessMap = useLoader(THREE.TextureLoader, cardFolderName + '/BrushedIron1K_Roughness.png')
-    const metalnessMap = useLoader(THREE.TextureLoader, cardFolderName + '/BrushedIron1K_Metallic.png')
+    const metalNormalMap = useLoader(THREE.TextureLoader, metalNormalPath)
+    const metalBaseMap = useLoader(THREE.TextureLoader, metalBasePath)
+    const metalRoughnessMap = useLoader(THREE.TextureLoader, metalRoughnessPath)
+    const metalnessMap = useLoader(THREE.TextureLoader, metalnessPath)
 
     return { metalNormalMap, metalBaseMap, metalRoughnessMap, metalnessMap }
 }
@@ -21,10 +24,10 @@ function useCardTextures() {
 export function CardBoard({ isShowTime, colors, stops, rotation }) {
 
     useEffect(() => {
-        useLoader.preload(THREE.TextureLoader, cardFolderName + '/BrushedIron1K_Normal.png');
-        useLoader.preload(THREE.TextureLoader, cardFolderName + '/BrushedIron1K_BaseColor.png');
-        useLoader.preload(THREE.TextureLoader, cardFolderName + '/BrushedIron1K_Roughness.png');
-        useLoader.preload(THREE.TextureLoader, cardFolderName + '/BrushedIron1K_Metallic.png');
+        useLoader.preload(THREE.TextureLoader, metalNormalPath);
+        useLoader.preload(THREE.TextureLoader, metalBasePath);
+        useLoader.preload(THREE.TextureLoader, metalRoughnessPath);
+        useLoader.preload(THREE.TextureLoader, metalnessPath);
     }, []);
 
     const { metalNormalMap, metalBaseMap, metalRoughnessMap, metalnessMap } = useCardTextures()

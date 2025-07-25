@@ -20,10 +20,10 @@ function getShortestPath(_currentIdx, _clickedIdx, totalCount) {
 // const mod = (n, m) => ((n % m) + m) % m;
 
 const CardCarousel = ({ datas, onCardClick, dotClickedIndex }) => {
-    const studioLogoPaths = useMemo(() => datas.map(c => c.studioLogo), [datas])
-    const gameImagePaths = useMemo(() => datas.map(c => c.gameImage), [datas])
-    const studioLogos = useTexture(studioLogoPaths)
-    const gameImages = useTexture(gameImagePaths)
+    const studioLogoPaths = useMemo(() => datas.map(c => c.logo), [datas])
+    const imagePaths = useMemo(() => datas.map(c => c.image), [datas])
+    const logos = useTexture(studioLogoPaths)
+    const images = useTexture(imagePaths)
 
     const radius = 12
     const angleStep = 0.1 // radians, ~16°//0.13
@@ -98,11 +98,11 @@ const CardCarousel = ({ datas, onCardClick, dotClickedIndex }) => {
                         })}
                     >
                         <Card
-                            studioLogo={studioLogos[index]}
+                            logo={logos[index]}
                             website={card.website}
-                            gameImage={gameImages[index]}
-                            gameTitle={card.gameTitle}
-                            dateText={card.dateText}
+                            image={images[index]}
+                            title={card.title}
+                            date={card.date}
                             onClick={() => {
                                 makeClickedCardToCentre(index)
                                 onCardClick?.(index)

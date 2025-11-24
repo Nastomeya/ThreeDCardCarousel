@@ -4,7 +4,8 @@ import DotCarousel from './DotCarousel';
 import SliderArrows from './SliderArrows';
 import CarouselText from './CarouselText';
 
-const btnOffsetY = 0.35
+// const btnOffsetY = 0.35
+const btnOffsetY = 0.45
 const btnOffsetZ = 0.1
 const arrBtnOffsetX = 1.65
 const autoplayDelay = 6500; // Seconds between slides
@@ -40,7 +41,7 @@ const CarouselContainer = ({ datas, isAutoPlaying = true, isMobile = false }) =>
 
     return (
         <>
-            <CarouselText />
+            {/* <CarouselText /> */}
             <CardCarousel
                 datas={datas}
                 onCardClick={handleCardClick}

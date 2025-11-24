@@ -17,7 +17,8 @@ export default function App() {
 
     const isNowMobile = window.innerWidth < 768;
     updateWindowSize(isNowMobile);
-    const targetAspect = isNowMobile ? 0.85 : 2.0125//
+    // const targetAspect = isNowMobile ? 0.85 : 2.0125//
+    const targetAspect = isNowMobile ? 0.85 : 3//
 
     const viewportHeight = window.innerHeight
     const viewportWidth = window.innerWidth
@@ -105,8 +106,8 @@ export default function App() {
       >
         {/* <OrthographicCamera makeDefault position={[0, 0, 10]} zoom={500} /> */}
         {/* <OrbitControls enableZoom enablePan enableRotate target={[0, 0, 0]} enableDamping={false} /> */}
-        <ambientLight intensity={4} />
-        <directionalLight position={[0, 0, 1]} intensity={1} target-position={[0, 0, 0]} />
+        <ambientLight intensity={1} />
+        <directionalLight position={[0, 0, 1]} intensity={2} target-position={[0, 0, 0]} />
         <CarouselContainer datas={studios} isAutoPlaying={isAutoPlaying} isMobile={isMobile} />
       </Canvas>
     </div>

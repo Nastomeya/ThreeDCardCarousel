@@ -18,7 +18,7 @@ export default function App() {
     const isNowMobile = window.innerWidth < 768;
     updateWindowSize(isNowMobile);
     // const targetAspect = isNowMobile ? 0.85 : 2.0125//
-    const targetAspect = isNowMobile ? 0.85 : 3//
+    const targetAspect = isNowMobile ? 0.85 : 2.75//
 
     const viewportHeight = window.innerHeight
     const viewportWidth = window.innerWidth
@@ -93,7 +93,7 @@ export default function App() {
           display: 'block'
         }}
         camera={{
-          position: [0, 0, 4.8],
+          position: [0, 0, 5.2],
           fov: 60
         }}
 

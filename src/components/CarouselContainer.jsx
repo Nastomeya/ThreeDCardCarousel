@@ -5,7 +5,7 @@ import SliderArrows from './SliderArrows';
 import CarouselText from './CarouselText';
 
 // const btnOffsetY = 0.35
-const btnOffsetY = 0.45
+const btnOffsetY = 0.4
 const btnOffsetZ = 0.1
 const arrBtnOffsetX = 1.65
 const autoplayDelay = 6500; // Seconds between slides

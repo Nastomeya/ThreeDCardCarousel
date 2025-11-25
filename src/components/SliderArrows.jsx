@@ -7,9 +7,9 @@ const BTN_DATAS = [
     { id: 1 }]
 
 const BTN_SETTING = {
-    radius: 0.2,//0.1,//
+    radius: 0.25,//0.1,//
     segments: 32,
-    space: 0.5,
+    space: 0.6,
     offsetX: 3.67,
 };
 const SliderArrows = ({ onBtnClick, currentIndex, totalSlides, offsetX = 0, offsetY, offsetZ }) => {

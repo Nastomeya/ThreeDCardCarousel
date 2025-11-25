@@ -29,6 +29,7 @@ const CardCarousel = ({ datas, onCardClick, dotClickedIndex }) => {
     const angleStep = 0.1 // radians, ~16°//0.13
     const maxAngle = 0.4
     const maxZOffset = 1  // How much the outer cards recede
+    const offsetY = -0.23
 
     const totalCount = datas.length;
     const halfCount = totalCount / 2
@@ -81,7 +82,7 @@ const CardCarousel = ({ datas, onCardClick, dotClickedIndex }) => {
                             const baseX = Math.sin(theta) * radius
                             const x = baseX * positionSpread
                             const z = Math.cos(theta) * radius - radius - Math.abs(offset) * maxZOffset
-                            return [x, 0, z]
+                            return [x, offsetY, z]
                         })}
                         rotation={centerIdx.to(center => {
                             const offset = getWrappedOffset(index, center)

@@ -4,9 +4,9 @@ import { useBottonsPosition } from './useBottonsPosition'
 
 
 const DOT_SETTING = {
-    radius: 0.05,//0.1,//
+    radius: 0.06,//0.1,//
     segments: 16,//32,//
-    space: 0.175//0.5,//
+    space: 0.25//0.5,//
 };
 
 const DotCarousel = ({ datas, onDotClick, cardClickedIndex, offsetY, offsetZ }) => {

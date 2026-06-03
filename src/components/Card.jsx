@@ -2,12 +2,13 @@ import { AnimatedCardTitleText } from './AnimatedCardTitleText'
 import { AnimatedSubCardImage } from './AnimatedSubCardImage'
 import { AnimatedCardBoard } from './AnimatedCardBoard'
 import { AnimatedCardDateText } from './AnimatedCardDateText'
+import { AnimatedCardCompanyText } from './AnimatedCardCompanyText'
 import { LogoImageWithOutline } from './LogoImageWithOutline'
 import { useEffect } from 'react'
 import * as THREE from 'three'
 
 
-const Card = ({ logo, website, image, title, date, position = [0, 0, 0], rotation = [0, 0, 0], onClick, displayCode }) => {
+const Card = ({ logo, website, image, title, company, date, position = [0, 0, 0], rotation = [0, 0, 0], onClick, displayCode }) => {
 
     const logoRadius = 0.35
     const distanceFromCard = 0.055;
@@ -32,6 +33,13 @@ const Card = ({ logo, website, image, title, date, position = [0, 0, 0], rotatio
                 distanceFromCard={distanceFromCard}
                 title={title}
             />
+            {company && (
+                <AnimatedCardCompanyText
+                    displayCode={displayCode}
+                    distanceFromCard={distanceFromCard}
+                    company={company}
+                />
+            )}
             <AnimatedCardDateText
                 displayCode={displayCode}
                 distanceFromCard={distanceFromCard}

@@ -13,7 +13,7 @@ const SPRING_CONFIG = {
 };
 const SIDE_POS_CONFIG = {
     x: 1.58,
-    y: 1.5,
+    y: -0.8,
 }
 function getTextConfig(displayCode) {
     return {
@@ -37,7 +37,7 @@ export function AnimatedCardDateText({ displayCode, distanceFromCard, date }) {
         switch (displayCode) {
             case DISPLAY_MODES.CENTRE:
                 return {
-                    position: [1.4, 0.8, distanceFromCard],
+                    position: [1.4, -1.425, distanceFromCard],
                     rotation: [0, 0, 0],
                     color: "#11234A"
                 }

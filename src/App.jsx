@@ -51,8 +51,8 @@ export default function App() {
     }
   }
 
-  useEffect(() => {
-    fetch('/api-data/datas.json')
+  useEffect(() => {    
+    fetch(`/api-data/datas.json?v=${new Date().getTime()}`)
       .then((res) => {
         if (!res.ok) throw new Error('Failed to fetch JSON');
         return res.json();

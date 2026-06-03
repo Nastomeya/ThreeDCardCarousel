@@ -4,6 +4,7 @@
     "logo": "/api-data/images/BlindSqurrelGames/logo.jpg",
     "image": "/api-data/images/BlindSqurrelGames/image.jpg",
     "title": "New World",
+    "company": "Blind Squirrel Games",
     "date": "28 Sep 2021",
     "website": "https://blindsquirrelentertainment.com/"
   },
@@ -12,6 +13,7 @@
     "logo": "/api-data/images/RocketWerkz/logo.png",
     "image": "/api-data/images/RocketWerkz/image.jpg",
     "title": "Kitten Space Agency",
+    "company": "RocketWerkz",
     "date": "Coming soon",
     "website": "https://rocketwerkz.com/studio/"
   },
@@ -20,6 +22,7 @@
     "logo": "/api-data/images/BlackSaltGames/logo.png",
     "image": "/api-data/images/BlackSaltGames/image.jpg",
     "title": "DREDGE",
+    "company": "Black Salt Games",
     "date": "27 Feb 2025",
     "website": "https://www.blacksaltgames.com/"
   },
@@ -28,6 +31,7 @@
     "logo": "/api-data/images/PikPok/logo.jpg",
     "image": "/api-data/images/PikPok/image.jpg",
     "title": "Into the Dead: Our Darkest Days",
+    "company": "PikPok",
     "date": "09 April 2025",
     "website": "https://pikpok.com/"
   },
@@ -36,6 +40,7 @@
     "logo": "/api-data/images/SpaceRockGames/logo.jpg",
     "image": "/api-data/images/SpaceRockGames/image.jpg",
     "title": "Criminals Within",
+    "company": "Space Rock Games",
     "date": "31 Dec 2023",
     "website": "https://www.spacerockgames.com/"
   },
@@ -44,6 +49,7 @@
     "logo": "/api-data/images/DinosaurPoloClub/logo.jpg",
     "image": "/api-data/images/DinosaurPoloClub/image.jpg",
     "title": "Mini Motorways",
+    "company": "Dinosaur Polo Club",
     "date": "19 Sep 2019",
     "website": "https://dinopoloclub.com/"
   },
@@ -52,6 +58,7 @@
     "logo": "/api-data/images/DigitalConfectioners/logo.jpg",
     "image": "/api-data/images/DigitalConfectioners/image.jpg",
     "title": "Dread Hunger",
+    "company": "Digital Confectioners",
     "date": "23 April 2021",
     "website": "https://www.digitalconfectioners.com/"
   }

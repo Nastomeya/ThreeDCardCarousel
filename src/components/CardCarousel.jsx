@@ -104,7 +104,7 @@ const CardCarousel = ({ datas, onCardClick, dotClickedIndex }) => {
                             image={images[index]}
                             title={card.title}
                             company={card.company}
-                            date={card.date}
+                            note={card.note}
                             onClick={() => {
                                 makeClickedCardToCentre(index)
                                 onCardClick?.(index)

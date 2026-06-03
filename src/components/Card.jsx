@@ -8,7 +8,7 @@ import { useEffect } from 'react'
 import * as THREE from 'three'
 
 
-const Card = ({ logo, website, image, title, company, date, position = [0, 0, 0], rotation = [0, 0, 0], onClick, displayCode }) => {
+const Card = ({ logo, website, image, title, company, note, position = [0, 0, 0], rotation = [0, 0, 0], onClick, displayCode }) => {
 
     const logoRadius = 0.35
     const distanceFromCard = 0.055;
@@ -43,7 +43,7 @@ const Card = ({ logo, website, image, title, company, date, position = [0, 0, 0]
             <AnimatedCardDateText
                 displayCode={displayCode}
                 distanceFromCard={distanceFromCard}
-                date={date}
+                note={note}
             />
 
             <AnimatedSubCardImage

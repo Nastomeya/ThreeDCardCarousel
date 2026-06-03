@@ -26,7 +26,7 @@ function getTextConfig(displayCode) {
         lineHeight: 1.22,
     }
 }
-export function AnimatedCardDateText({ displayCode, distanceFromCard, date }) {
+export function AnimatedCardDateText({ displayCode, distanceFromCard, note }) {
     const { font, maxWidth, anchorX, textAlign, fontSize, lineHeight, anchorY } = getTextConfig(displayCode)
 
     // compute target transforms
@@ -69,7 +69,7 @@ export function AnimatedCardDateText({ displayCode, distanceFromCard, date }) {
                 font={font} maxWidth={maxWidth} anchorX={anchorX}
                 textAlign={textAlign} fontSize={fontSize}
                 lineHeight={lineHeight} anchorY={anchorY} >
-                {date}
+                {note}
             </CardDateText>
         </a.group>
     )

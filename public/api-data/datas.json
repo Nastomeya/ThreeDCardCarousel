@@ -5,7 +5,7 @@
     "image": "/api-data/images/BlindSqurrelGames/image.jpg",
     "title": "New World",
     "company": "Blind Squirrel Games",
-    "date": "28 Sep 2021",
+    "note": "28 Sep 2021",
     "website": "https://blindsquirrelentertainment.com/"
   },
   {
@@ -14,7 +14,7 @@
     "image": "/api-data/images/RocketWerkz/image.jpg",
     "title": "Kitten Space Agency",
     "company": "RocketWerkz",
-    "date": "Coming soon, Coming soon, Coming soon, Coming soon, Coming soon, Coming soon",
+    "note": "'Kitten Space Agency' should be released in mid-June this year.",
     "website": "https://rocketwerkz.com/studio/"
   },
   {
@@ -23,7 +23,7 @@
     "image": "/api-data/images/BlackSaltGames/image.jpg",
     "title": "DREDGE",
     "company": "Black Salt Games",
-    "date": "27 Feb 2025",
+    "note": "27 Feb 2025",
     "website": "https://www.blacksaltgames.com/"
   },
   {
@@ -32,7 +32,7 @@
     "image": "/api-data/images/PikPok/image.jpg",
     "title": "Into the Dead: Our Darkest Days",
     "company": "PikPok",
-    "date": "09 April 2025",
+    "note": "09 April 2025",
     "website": "https://pikpok.com/"
   },
   {
@@ -41,7 +41,7 @@
     "image": "/api-data/images/SpaceRockGames/image.jpg",
     "title": "Criminals Within",
     "company": "Space Rock Games",
-    "date": "31 Dec 2023",
+    "note": "31 Dec 2023",
     "website": "https://www.spacerockgames.com/"
   },
   {
@@ -50,7 +50,7 @@
     "image": "/api-data/images/DinosaurPoloClub/image.jpg",
     "title": "Mini Motorways",
     "company": "Dinosaur Polo Club",
-    "date": "19 Sep 2019",
+    "note": "19 Sep 2019",
     "website": "https://dinopoloclub.com/"
   },
   {
@@ -59,7 +59,7 @@
     "image": "/api-data/images/DigitalConfectioners/image.jpg",
     "title": "Dread Hunger",
     "company": "Digital Confectioners",
-    "date": "23 April 2021",
+    "note": "23 April 2021",
     "website": "https://www.digitalconfectioners.com/"
   }
 ]

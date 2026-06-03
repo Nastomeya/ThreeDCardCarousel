@@ -12,17 +12,16 @@ const SPRING_CONFIG = {
     precision: 0.001,
 };
 const SIDE_POS_CONFIG = {
-    x: 1.7,
+    x: 1.55,
     y: 1.5,
 }
 function getTextConfig(displayCode) {
     return {
         font: montserratFont,
-        maxWidth: 1.5,        
-        textAlign: displayCode === 1 ? "right" : "center",
-        //textAlign: "center",
+        maxWidth: 2.5,        
+        textAlign: "center",
         fontSize: 0.12,
-        anchorX: "right",
+        anchorX: displayCode === 1 ? "center" : "right",
         anchorY: "top",
         lineHeight: 1.22,
     }
@@ -38,7 +37,7 @@ export function AnimatedCardCompanyText({ displayCode, distanceFromCard, company
         switch (displayCode) {
             case DISPLAY_MODES.CENTRE:
                 return {
-                    position: [1.7, 0.8, distanceFromCard],
+                    position: [1, 0.8, distanceFromCard],
                     rotation: [0, 0, 0],
                     color: "#11234A"
                 }

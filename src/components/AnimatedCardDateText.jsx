@@ -12,13 +12,13 @@ const SPRING_CONFIG = {
     precision: 0.001,
 };
 const SIDE_POS_CONFIG = {
-    x: 1.58,
-    y: -0.8,
+    x: 0,//1.58,
+    y: 0//-0.8,
 }
 function getTextConfig(displayCode) {
     return {
         font: montserratFont,
-        maxWidth: 0.7,
+        maxWidth: displayCode === 1 ? 2.85 :  0.7,
         textAlign: displayCode === 1 ? "right" : "center",
         fontSize: 0.1,
         anchorX: "right",
@@ -37,7 +37,7 @@ export function AnimatedCardDateText({ displayCode, distanceFromCard, date }) {
         switch (displayCode) {
             case DISPLAY_MODES.CENTRE:
                 return {
-                    position: [1.4, -1.425, distanceFromCard],
+                    position: [1.4, -1.41, distanceFromCard],
                     rotation: [0, 0, 0],
                     color: "#11234A"
                 }

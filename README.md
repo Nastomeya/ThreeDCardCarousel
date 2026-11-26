@@ -2,6 +2,8 @@
 
 An interactive 3D card carousel built with **React**, **Vite**, **Three.js** (`@react-three/fiber` & `@react-three/drei`), and **`@react-spring/three`**. Cards are arranged along a curved 3D arc with spring-driven transitions, brushed-metal PBR materials, and JSON-driven content.
 
+![3D Card Carousel Preview](docs/screenshot.jpg)
+
 ## Features
 
 - **Curved 3D Carousel & Shortest-Path Navigation**: Cards animate smoothly along an arc using `@react-spring/three` and always take the shortest wrap-around path when jumping between slides.

@@ -117,3 +117,10 @@ Place custom images inside `public/api-data/images/` (or update the paths accord
         ├── SliderArrows.jsx        # 3D previous/next arrow controls
         └── ...                     # Geometry/UV utilities and custom hooks
 ```
+
+## License
+
+The source code in this project is licensed under the [MIT License](LICENSE).
+
+> **Note on third-party assets:** Game artwork, studio logos (`public/api-data/images/`), PBR textures, and font files included for demonstration purposes remain the property of their respective owners and are governed by their original licenses.
+
